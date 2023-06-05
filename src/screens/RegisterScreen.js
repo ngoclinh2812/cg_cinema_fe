@@ -37,7 +37,7 @@ const RegisterScreen = () => {
             lastName: data.lastName,
             phone: data.phone,
             email: data.email,
-            username: null, // Not available in the form
+            username: data.username, // Not available in the form
             password: data.password,
         }
 
@@ -48,6 +48,15 @@ const RegisterScreen = () => {
     <form onSubmit={handleSubmit(submitForm)}>
       {error && <Error>{error}</Error>}
       {customError && <Error>{customError}</Error>}
+        <div className='form-group'>
+              <label htmlFor='username'>Username</label>
+              <input
+                  type='text'
+                  className='form-input'
+                  {...register('username')}
+                  required
+              />
+          </div>
         <div className='form-group'>
             <label htmlFor='firstName'>First Name</label>
             <input
