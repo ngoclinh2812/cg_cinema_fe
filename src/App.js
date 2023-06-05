@@ -11,6 +11,8 @@ import ProfileScreen from './screens/ProfileScreen'
 import HomeScreen from './screens/HomeScreen'
 import ProtectedRoute from './routing/ProtectedRoute'
 import './App.css'
+import AdminDashboard from './screens/admin/AdminDashboard'
+import AdminLogin from './screens/admin/AdminLogin'
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
             <Route path='/user-profile' element={<ProfileScreen />} />
           </Route>
           <Route path='*' element={<Navigate to='/' replace />} />
+          <Route path='/admin/' element={<AdminLogin />}/>
+          <Route path='/admin/dashboard' element={<AdminDashboard />}/>
         </Routes>
       </main>
     </Router>

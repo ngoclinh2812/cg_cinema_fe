@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 
 const backendURL =
   process.env.NODE_ENV !== 'production'
-    ? 'http://localhost:8080/api/test/account'
+    ? 'http://localhost:8080/api'
     : process.env.REACT_APP_SERVER_URL
 
 export const userLogin = createAsyncThunk(
@@ -18,7 +18,7 @@ export const userLogin = createAsyncThunk(
       }
 
       const { data } = await axios.post(
-        `${backendURL}/login`,
+        `${backendURL}/sf/account/login`,
         { email, password },
         config
       )
@@ -49,7 +49,7 @@ export const registerUser = createAsyncThunk(
       }
 
       await axios.post(
-        `${backendURL}/signup`,
+        `${backendURL}/sf/account/signup`,
         { username, lastName, firstName, email, phone, password },
         config
       )
