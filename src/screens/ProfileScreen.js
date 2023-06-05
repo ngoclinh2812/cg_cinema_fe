@@ -6,7 +6,7 @@ const ProfileScreen = () => {
 
   return (
     <div>
-      <figure>{userInfo?.firstName.charAt(0).toUpperCase()}</figure>
+      <figure>{userInfo?.firstName}</figure>
       <span>
         Welcome <strong>{userInfo?.firstName}!</strong> You can view this page
         because you're logged in
