@@ -1,10 +1,10 @@
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { userLogin } from '../features/auth/authActions'
+import { userLogin } from '.././features/auth/authActions'
 import { useEffect } from 'react'
-import Error from '../components/Error'
-import Spinner from '../components/Spinner'
+import Error from '.././components/Error'
+import Spinner from '.././components/Spinner'
 
 const LoginScreen = () => {
   const { loading, userInfo, error } = useSelector((state) => state.auth)
@@ -17,7 +17,7 @@ const LoginScreen = () => {
   // redirect authenticated user to profile screen
   useEffect(() => {
     if (userInfo) {
-      navigate('/user-profile')
+      navigate('/admin/dashboard')
     }
   }, [navigate, userInfo])
 
