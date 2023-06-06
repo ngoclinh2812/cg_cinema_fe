@@ -1,0 +1,24 @@
+.homepage {
+    position: relative;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+    z-index: 100;
+}
+
+.navbar-scroll {
+    background-color: #ffffff; /* Set your desired background color for the navbar */
+}
+
+.carousel {
+    margin-top: 0px; /* Adjust the margin to match the navbar height */
+}
+
+/* Additional styles for the carousel */
