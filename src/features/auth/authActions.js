@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 
 const backendURL =
   process.env.NODE_ENV !== 'production'
-    ? 'http://localhost:8080'
+    ? 'http://localhost:8080/api'
     : process.env.REACT_APP_SERVER_URL
 
 export const userLogin = createAsyncThunk(
@@ -18,14 +18,14 @@ export const userLogin = createAsyncThunk(
       }
 
       const { data } = await axios.post(
-        `${backendURL}/api/test/account/login`,
+        `${backendURL}/sf/account/login`,
         { email, password },
         config
       )
 
       // store user's token in local storage
-      localStorage.setItem('userToken', data.userToken)
-
+      localStorage.setItem('userToken', data)
+      console.log(data);
       return data
     } catch (error) {
       // return custom error message from API if any
@@ -40,7 +40,7 @@ export const userLogin = createAsyncThunk(
 
 export const registerUser = createAsyncThunk(
   'auth/register',
-  async ({ firstName, email, password }, { rejectWithValue }) => {
+  async ({ username, lastName, firstName, email, phone, password }, { rejectWithValue }) => {
     try {
       const config = {
         headers: {
@@ -49,8 +49,8 @@ export const registerUser = createAsyncThunk(
       }
 
       await axios.post(
-        `${backendURL}/api/test/account/signup`,
-        { firstName, email, password },
+        `${backendURL}/sf/account/signup`,
+        { username, lastName, firstName, email, phone, password },
         config
       )
     } catch (error) {
