@@ -37,7 +37,7 @@ const RegisterScreen = () => {
             lastName: data.lastName,
             phone: data.phone,
             email: data.email,
-            username: data.username, // Not available in the form
+            username: data.username, 
             password: data.password,
         }
 
