@@ -1,34 +1,24 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from 'react-router-dom'
-import Header from './components/Header'
-import LoginScreen from './screens/LoginScreen'
-import RegisterScreen from './screens/RegisterScreen'
-import ProfileScreen from './screens/ProfileScreen'
-import HomeScreen from './screens/HomeScreen'
-import ProtectedRoute from './routing/ProtectedRoute'
-import './App.css'
+import './App.css';
+import Footer from "./components/Footer";
+import NavigationBar from "./components/navigation/NavigationBar";
+import Homepage from "./pages/Homepage";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+
 
 function App() {
   return (
-    <Router>
-      <Header />
-      <main className='container content'>
+    <BrowserRouter>
+        <NavigationBar className='bg-transparent'/>
         <Routes>
-          <Route path='/' element={<HomeScreen />} />
-          <Route path='/login' element={<LoginScreen />} />
-          <Route path='/register' element={<RegisterScreen />} />
-          <Route element={<ProtectedRoute />}>
-            <Route path='/user-profile' element={<ProfileScreen />} />
-          </Route>
-          <Route path='*' element={<Navigate to='/' replace />} />
+            <Route index element={<Homepage/>}/>
+            <Route path='/login' element={<Login/>}/>
+            <Route path='/register' element={<Register/>}/>
         </Routes>
-      </main>
-    </Router>
-  )
+        <Footer/>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
