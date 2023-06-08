@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import logo from '../../asset/images/codegym-logo.jpg';
 import { Navbar } from 'flowbite-react';
 import { MovieNavList, StoreNavList, TheatreNavList } from './navList';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { FaUser } from 'react-icons/fa';
 
 const NavigationBar = () => {
     const [scrollNav, setScrollNav] = useState(false);
+    const location = useLocation();
 
     useEffect(() => {
         let timeoutId;
@@ -14,7 +15,7 @@ const NavigationBar = () => {
         const changeNavBackground = () => {
             setScrollNav(true);
             clearTimeout(timeoutId);
-            timeoutId = setTimeout(() => setScrollNav(false), 1000); // Change back to transparent after 3 seconds of no scrolling
+            timeoutId = setTimeout(() => setScrollNav(false), 3000); // Change back to transparent after 3 seconds of no scrolling
         };
 
         const resetNavBackground = () => {
@@ -32,13 +33,15 @@ const NavigationBar = () => {
         };
     }, []);
 
+    const navbarClassName = `text-blue-500 z-50 w-full bg-indigo-500 ${
+        location.pathname === '/' ? 'fixed ${!scrollNav ? bg-opacity-0 : bg-opacity-1 } ' : 'sticky top-0 mb-4'
+    } `;
+
     return (
         <Navbar
             fluid
-            className={`text-blue-500 z-50 fixed w-full  ${
-                !scrollNav ? 'bg-opacity-0' : 'bg-opacity-1 bg-blue-500'
-            }`}
-            style={{ alignItems: 'center' }}
+            className={navbarClassName}
+            style={{ alignItems: 'center', top: location.pathname === '/' ? '0' : '' }}
         >
             <div className="flex justify-between items-center w-full">
                 <div className="flex items-center">
@@ -66,11 +69,10 @@ const NavigationBar = () => {
                         to="/login"
                         className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                     >
-                        <span className=' flex items-center'>
-
-                        <FaUser className="text-lg mr-2"/>
-                        <span className="hidden md:inline">Join Use Now!</span>
-                        </span>
+            <span className="flex items-center">
+              <FaUser className="text-lg mr-2" />
+              <span className="hidden md:inline">Join Use Now!</span>
+            </span>
                     </Link>
                 </div>
             </div>
