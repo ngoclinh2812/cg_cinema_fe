@@ -15,7 +15,7 @@ function App() {
                 <div className="relative">
                     <NavigationBar />
                     <Routes>
-                        <Route index element={<Homepage />} />
+                        <Route path="/" element={<Homepage />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
                         <Route path="/theatre" element={<TheatreList />} />
