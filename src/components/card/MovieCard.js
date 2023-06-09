@@ -63,11 +63,4 @@ const MovieCard = ({ name, img }) => {// thiếu csdl thoi gian chieu
     );
 };
 
-/*MovieCard.propTypes = {
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    imageUrl: PropTypes.string.isRequired,
-};*/
-
 export default MovieCard;
