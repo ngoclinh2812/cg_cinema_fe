@@ -39,7 +39,7 @@ const TheatreListTab = () => {
         },
     ];
     return (
-        <div className="mt-16">
+        <div className="">
             <Tabs value={activeTab}>
                 <TabsHeader
                     className="rounded-none border-b border-blue-gray-50 bg-transparent p-0"
