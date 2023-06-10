@@ -3,9 +3,11 @@ import {Tabs,Tab, TabPanel, TabsBody, TabsHeader} from "@material-tailwind/react
 import {getTheaters, selectSuccess, selectTheaterList, setSuccess} from "../../features/theater/theaterSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
+import "../../asset/styles/theater.css"
+
 
 const TheatreListTab = () => {
-    // const [activeTab, setActiveTab] = React.useState("html");
+    const [activeTab, setActiveTab] = React.useState("html");
     // const data = [
     //     {
     //         label: "Rap 1",
@@ -36,7 +38,9 @@ const TheatreListTab = () => {
     //     {
     //         label: "Rap 5",
     //         value: "svelte",
-    //         desc: `We're not always in the position that we want to be at.`,
+    //         desc: `We're not always in the position that we want to be at.
+    //   We're constantly growing. We're constantly making mistakes. We're
+    //   constantly trying to express ourselves and actualize our dreams.`,
     //     },
     // ];
 
@@ -57,12 +61,11 @@ const TheatreListTab = () => {
 
     useEffect(() => {
         getTheaterList();
-
-    }, [success])
+    }, [success]);
 
     return (
-        <div className="mt-16">
-            <Tabs>
+        <div className="">
+            <Tabs value={activeTab}>
                 <TabsHeader
                     className="rounded-none border-b border-blue-gray-50 bg-transparent p-0"
                     indicatorProps={{
@@ -73,8 +76,8 @@ const TheatreListTab = () => {
                         <Tab
                             key={theater.id}
                             value={theater.name}
-                            // onClick={() => setActiveTab(value)}
-                            // className={activeTab === value ? "text-blue-500" : ""}
+                            onClick={() => setActiveTab(theater.name)}
+                            className={activeTab === theater.name ? "text-blue-500" : ""}
                         >
                             {theater.name}
                         </Tab>
@@ -83,11 +86,19 @@ const TheatreListTab = () => {
                 <TabsBody>
                     {theaters.map((theater) => (
                         <TabPanel key={theater.id} value={theater.name}>
-                            {theater.name}
+                            <div className={"theater-body"}>
+                                <h1>
+                                    {theater.name}
+                                </h1>
+                                <p>
+                                    {theater.address}
+                                </p>
+                            </div>
                         </TabPanel>
                     ))}
                 </TabsBody>
             </Tabs>
+
         </div>
     );
 };

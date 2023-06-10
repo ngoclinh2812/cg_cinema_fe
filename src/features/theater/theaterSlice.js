@@ -10,7 +10,7 @@ const initialState = {
 
 export const getTheaters = createAsyncThunk("theater", async () => {
     const response = await findAllTheaters();
-    return response.data;
+    return response.data.dataList;
 });
 
 export const theaterSlice = createSlice({
@@ -48,11 +48,11 @@ export const theaterSlice = createSlice({
     }
 });
 
+
 export const { setLoading, setError, setSuccess } = theaterSlice.actions;
 
-export const selectLoading = (state) => state.theater.loading;
-export const selectError = (state) => state.theater.error;
-export const selectSuccess = (state) => state.theater.success;
-export const selectTheaterList = (state) => state.theater.values;
-
+export const selectLoading = (state) => state.theater?.loading;
+export const selectError = (state) => state.theater?.error;
+export const selectSuccess = (state) => state.theater?.success;
+export const selectTheaterList = (state) => state.theater?.values;
 export default theaterSlice.reducer;

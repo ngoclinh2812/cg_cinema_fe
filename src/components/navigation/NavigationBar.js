@@ -2,49 +2,40 @@ import React, { useEffect, useState } from 'react';
 import logo from '../../asset/images/codegym-logo.jpg';
 import { Navbar } from 'flowbite-react';
 import { MovieNavList, StoreNavList, TheatreNavList } from './navList';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { FaUser } from 'react-icons/fa';
 
 const NavigationBar = () => {
     const [scrollNav, setScrollNav] = useState(false);
+    const location = useLocation();
 
     useEffect(() => {
-        let timeoutId;
+        const handleScroll = () => {
+            const isTop = window.scrollY < 1;
+            // Change the value to set when the navbar becomes transparent
 
-        const changeNavBackground = () => {
-            setScrollNav(true);
-            clearTimeout(timeoutId);
-            timeoutId = setTimeout(() => setScrollNav(false), 1000); // Change back to transparent after 3 seconds of no scrolling
+            setScrollNav(!isTop);
         };
 
-        const resetNavBackground = () => {
-            clearTimeout(timeoutId);
-            setScrollNav(false);
-        };
-
-        window.addEventListener('scroll', changeNavBackground);
-        window.addEventListener('mousemove', resetNavBackground);
+        window.addEventListener('scroll', handleScroll);
 
         return () => {
-            window.removeEventListener('scroll', changeNavBackground);
-            window.removeEventListener('mousemove', resetNavBackground);
-            clearTimeout(timeoutId);
+            window.removeEventListener('scroll', handleScroll);
         };
     }, []);
 
+    const navbarClassName = `text-white-500 z-50 w-full bg-opacity-1 bg-[#272882]
+    ${location.pathname === '/' ? 'fixed' : 'sticky top-0 mb-4'} 
+    ${location.pathname === '/' && !scrollNav ? 'bg-opacity-0' : ''}
+    }`;
+
     return (
-        <Navbar
-            fluid
-            className={`text-blue-500 z-50 fixed w-full  ${
-                !scrollNav ? 'bg-opacity-0' : 'bg-opacity-1 bg-blue-500'
-            }`}
-            style={{ alignItems: 'center' }}
-        >
+        <Navbar fluid className={navbarClassName} style={{ alignItems: 'center' }}>
             <div className="flex justify-between items-center w-full">
                 <div className="flex items-center">
                     <Navbar.Brand href="/">
                         <img alt="Flowbite React Logo" className="mr-3 h-6 sm:h-9" src={logo} />
-                        <span className="self-center whitespace-nowrap text-xl font-semibold mr-4">CG Cinema</span>
+                        <span className="self-center whitespace-nowrap text-xl font-semibold mr-4 text-white">CG Cinema</span>
                     </Navbar.Brand>
                     <Navbar.Collapse>
                         <Navbar.Link className="mr-4">
@@ -62,15 +53,17 @@ const NavigationBar = () => {
                 </div>
 
                 <div className="flex items-center md:order-2">
+                    <Navbar.Toggle/>
                     <Link
                         to="/login"
                         className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                     >
-                        <span className=' flex items-center'>
-
-                        <FaUser className="text-lg mr-2"/>
-                        <span className="hidden md:inline">Join Use Now!</span>
+                        <span className="hidden md:flex items-center">
+                            <FaUser className="text-lg mr-2" />
+                            <span>Join Us Now!</span>
                         </span>
+
+                        <FaUser className="text-lg md:hidden " />
                     </Link>
                 </div>
             </div>
