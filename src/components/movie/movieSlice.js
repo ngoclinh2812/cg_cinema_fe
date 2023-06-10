@@ -11,9 +11,9 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
       error: null,
       success: false,
   };
-export const getMovies = createAsyncThunk("movie", async () => {
+export const getMovies = createAsyncThunk("", async () => {
     const response = await movies();
-    return response.data;
+    return response.data.dataList;
 });
 export const movieSlice = createSlice({
     name: "movie",

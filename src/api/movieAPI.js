@@ -1,10 +1,10 @@
 import axios from "axios";
-const Movie_API ="http://localhost:8080/api/movies";
+const Movie_API ="http://localhost:8080/api";
 
 export const movies = async () => {
     let result = null;
     try {
-        result = await axios.get(`${Movie_API}`);
+        result = await axios.get(`${Movie_API}/movies`);
     } catch (e) {
         console.log("Find movie API error: " + e);
     }
