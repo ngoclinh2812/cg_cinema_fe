@@ -4,7 +4,8 @@ import {Link} from "react-router-dom";
 import {Button} from "flowbite-react";
 import {IoTicketOutline} from "react-icons/io5";
 import {MdOutlineLocalMovies} from "react-icons/md";
-const MovieCard = ({ title, genre, rating, imageUrl, duration }) => {
+
+const MovieCard = ({ title, imageUrl ,rating}) => {// nen them csdl
     let bgColor = '';
     switch (rating){
         case 'PG':
@@ -27,7 +28,7 @@ const MovieCard = ({ title, genre, rating, imageUrl, duration }) => {
                 <img
                     className="rounded-3xl shadow-lg h-full w-full object-cover"
                     src={imageUrl}
-                    alt={`${title} + banner`}
+                    alt={`${title} + ${imageUrl} `}
                 />
             </div>
             <div className="flex flex-col w-1/2 space-y-4">
@@ -36,27 +37,23 @@ const MovieCard = ({ title, genre, rating, imageUrl, duration }) => {
                     <div className={`font - bold rounded-xl p-2 ${bgColor}`} >{rating}</div>
                 </div>
 
-                <div className='flex items-center'>
-                    <div className="text-lg text-gray-400 mr-4">Genre:</div>
-                    <div className="text-xl text-gray-800">{genre}</div>
-                </div>
-                <div className='flex items-center'>
-                    <div className="text-lg text-gray-400 mr-4">Duration</div>
-                    <div className="text-xl text-gray-800">{duration}</div>
+                <div className="flex flex-wrap text-2xl font-bold text-a">
+                    <div className="mb-2">
+                        <Link to="/">
+                            <Button className="p-button-outlined p-button-success mr-4">
+                                <IoTicketOutline className="text-lg mr-2" /> Tickets
+                            </Button>
+                        </Link>
+                    </div>
+                    <div>
+                        <Link to="/">
+                            <Button className="p-button-outlined p-button-success mr-4">
+                                <MdOutlineLocalMovies className="text-lg mr-2" /> Details
+                            </Button>
+                        </Link>
+                    </div>
                 </div>
 
-                <div className="flex text-2xl font-bold text-a">
-                    <Link to='/'>
-                        <Button className='mr-4'>
-                            <IoTicketOutline className='text-lg mr-2'/> Tickets
-                        </Button>
-                    </Link>
-                    <Link to='/'>
-                        <Button className='mr-4'>
-                            <MdOutlineLocalMovies className='text-lg mr-2'/> Details
-                        </Button>
-                    </Link>
-                </div>
             </div>
         </div>
     );
