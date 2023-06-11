@@ -52,6 +52,8 @@ export const registerUser = createAsyncThunk(
         `${backendURL}/sf/account/signup`,
         { username, lastName, firstName, email, phone, password },
         config
+      ).then(
+          console.log({ username, lastName, firstName, email, phone, password } + " has been created succesfully.")
       )
     } catch (error) {
       if (error.response && error.response.data.message) {

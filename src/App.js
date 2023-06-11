@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import TheatreList from "./pages/TheatreList";
 import CarouselHomepage from "./components/carousel/CarouselHomepage";
+import RegisterConfirmed from "./pages/RegisterConfirm";
 
 function App() {
     return (
@@ -28,6 +29,7 @@ function AppContent() {
                 <Route index element={<Homepage />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/register-confirm" element={<RegisterConfirmed />}/>
                 <Route path="/theatre" element={<TheatreList />} />
             </Routes>
             <Footer />
