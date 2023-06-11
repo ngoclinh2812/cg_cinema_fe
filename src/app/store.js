@@ -1,16 +1,15 @@
-import { configureStore } from '@reduxjs/toolkit'
-import authReducer from '../features/auth/authSlice'
-import { authApi } from '../api/authAPI'
-import movieSlice from "../components/movie/movieSlice";
+import { configureStore } from "@reduxjs/toolkit";
+import moviesReducer from "../features/movieSlice";
+import userReducer from "../features/userSlice";
+import registrationReducer from "../features/registrationSlice";
+import loginReducer from "../features/loginSlice";
 
 const store = configureStore({
   reducer: {
-    movie: movieSlice,
-    auth: authReducer,
-    [authApi.reducerPath]: authApi.reducer,
+    registration: registrationReducer,
+    user: userReducer,
+    login: loginReducer,
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(authApi.middleware),
-})
+});
 
-export default store
+export default store;

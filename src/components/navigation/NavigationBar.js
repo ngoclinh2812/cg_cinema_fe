@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import logo from '../../asset/images/codegym-logo.jpg';
 import { Navbar } from 'flowbite-react';
-import { MovieNavList, StoreNavList, TheatreNavList } from './navList';
+import { MovieNavList, StoreNavList, TheatreNavList } from './NavList';
 import { Link, useLocation } from 'react-router-dom';
 import { FaUser } from 'react-icons/fa';
 
@@ -11,9 +11,7 @@ const NavigationBar = () => {
 
     useEffect(() => {
         const handleScroll = () => {
-            const isTop = window.scrollY < 1;
-            // Change the value to set when the navbar becomes transparent
-
+            const isTop = window.scrollY < 10;
             setScrollNav(!isTop);
         };
 
@@ -24,13 +22,13 @@ const NavigationBar = () => {
         };
     }, []);
 
-    const navbarClassName = `text-white-500 z-50 w-full bg-opacity-1 bg-[#272882]
+    const navbarClassName = `text-white-500 z-50 w-full bg-opacity-1 
     ${location.pathname === '/' ? 'fixed' : 'sticky top-0 mb-4'} 
     ${location.pathname === '/' && !scrollNav ? 'bg-opacity-0' : ''}
     }`;
 
     return (
-        <Navbar fluid className={navbarClassName} style={{ alignItems: 'center' }}>
+        <Navbar fluid className={navbarClassName} style={{ alignItems: 'center', backgroundColor:'#272882' }}>
             <div className="flex justify-between items-center w-full">
                 <div className="flex items-center">
                     <Navbar.Brand href="/">

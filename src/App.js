@@ -23,7 +23,7 @@ function AppContent() {
 
     return (
         <div className={location.pathname === '/' ? 'relative' : ''}>
-            <NavigationBar className='sticky'/>
+            <NavigationBar/>
             <Routes>
                 <Route index element={<Homepage />} />
                 <Route path="/login" element={<Login />} />
