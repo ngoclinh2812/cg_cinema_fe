@@ -1,0 +1,14 @@
+.month-picker-fieldset {
+    overflow: hidden;
+    position: relative;
+    display: block;
+}
+
+.month-picker-fieldset {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+

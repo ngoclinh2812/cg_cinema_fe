@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/api/test/account";
+const API_URL = "http://localhost:8080/api/sf/account/";
 
 class AuthService {
     login(username, password) {
@@ -12,6 +12,11 @@ class AuthService {
                 }
 
                 return response.data;
+                console.log(response.data);
+            }
+        )
+            .catch((error) => {
+                console.log(error);
             });
     }
 

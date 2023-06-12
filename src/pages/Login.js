@@ -1,14 +1,19 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Typography} from "@material-tailwind/react";
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { userLogin } from '.././features/auth/authActions'
-import { useEffect } from 'react'
-// import { useForm } from "react-hook-form";
+
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    useEffect(() => {
+        if (userInfo) {
+            navigate("/");
+        }
+    }, [navigate, userInfo])
 
     const { loading, userInfo, error } = useSelector((state) => state.auth)
     const dispatch = useDispatch()
