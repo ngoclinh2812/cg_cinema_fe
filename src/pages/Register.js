@@ -39,25 +39,6 @@ const Register = () => {
     const handleSubmit = async (values) => {
         dispatch(registerStart());
 
-        const isDuplicatePhone = await checkDuplicatePhone(values.phone);
-        const isDuplicateUsername = await checkDuplicateUsername(values.username);
-        const isDuplicateEmail = await checkDuplicateEmail(values.email);
-
-        if (isDuplicatePhone) {
-            dispatch(registerFailure('Phone number is already registered.'));
-            return;
-        }
-
-        if (isDuplicateUsername) {
-            dispatch(registerFailure('Username is already taken.'));
-            return;
-        }
-
-        if (isDuplicateEmail) {
-            dispatch(registerFailure('Email is already registered.'));
-            return;
-        }
-
         try {
             const data = await registerUser(values);
             dispatch(registerSuccess());
@@ -81,6 +62,7 @@ const Register = () => {
 
     return (
         <>
+        <div className=" mx-auto bg-white p-8 my-4 rounded shadow-md">
             {loading && <SpinnerLoading />}
             <div className="flex justify-center">
                 <div className="w-1/2">
@@ -229,10 +211,10 @@ const Register = () => {
                             {error && <div className="text-red-700 bg-red-500"><p>{error}</p></div>}
                             <button
                                 type="submit"
-                                className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded"
+                                className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded "
                                 disabled={loading}
                             >
-                                Register
+                                Create Account
                             </button>
                             {success && (
                                 <p className="text-green-500">Registration successful! Please proceed to the login page.</p>
@@ -241,6 +223,7 @@ const Register = () => {
                     </Formik>
                 </div>
             </div>
+        </div>
         </>
     );
 };

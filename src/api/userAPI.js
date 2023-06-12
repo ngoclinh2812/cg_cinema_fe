@@ -2,7 +2,7 @@ import axios from "axios";
 
 const BASE_URL = "http://localhost:8080/api/sf/account";
 
-export const checkDuplicatePhone = async (phone) => {
+/*export const checkDuplicatePhone = async (phone) => {
     try {
         const response = await axios.get(`${BASE_URL}/check-duplicate-phone?phone=${phone}`);
         return response.data.isDuplicate;
@@ -34,7 +34,7 @@ export const checkDuplicateEmail = async (email) => {
         throw new Error(error.response.data);
     }
 
-};
+};*/
 
 export const registerUser = async (userData) => {
     try {

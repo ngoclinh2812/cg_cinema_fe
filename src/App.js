@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import TheatreList from "./pages/TheatreList";
 import CarouselHomepage from "./components/carousel/CarouselHomepage";
+import { useState } from "react";
 
 function App() {
     return (
@@ -20,13 +21,22 @@ function App() {
 
 function AppContent() {
     const location = useLocation();
+    const [loggedIn, setLoggedIn] = useState(false);
+
+    const handleLoginSuccess = () => {
+        setLoggedIn(true);
+    };
+
+    const handleLogout = () => {
+        setLoggedIn(false);
+    };
 
     return (
         <div className={location.pathname === '/' ? 'relative' : ''}>
-            <NavigationBar/>
+            <NavigationBar loggedIn={loggedIn} onLogout={handleLogout} />
             <Routes>
-                <Route index element={<Homepage />} />
-                <Route path="/login" element={<Login />} />
+                <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess} />} />
+                <Route path="/" element={<Homepage />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/theatre" element={<TheatreList />} />
             </Routes>
