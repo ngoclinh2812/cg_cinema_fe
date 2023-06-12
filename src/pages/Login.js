@@ -1,13 +1,26 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Typography} from "@material-tailwind/react";
+import {useDispatch, useSelector} from "react-redux";
+import {login} from "../features/actions/auth";
+import {useNavigate} from "react-router-dom";
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const { userInfo } = login(email, password);
+
+    useEffect(() => {
+        if (userInfo) {
+            navigate("/");
+        }
+    }, [navigate, userInfo])
 
     const handleSignIn = (e) => {
         e.preventDefault();
-        // Handle sign-in logic
+        dispatch(login(email, password))
     };
 
     return (
