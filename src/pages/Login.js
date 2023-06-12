@@ -3,38 +3,37 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import {Typography} from "@material-tailwind/react";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
+import {login} from "../features/loginSlice";
 
 const Login = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
-    const handleSubmit = async (values, {setSubmitting}) => {
+    const { userInfo } = login(email, password);
+
+    useEffect(() => {
+        if (userInfo) {
+            navigate('/');
+        }
+    }, [navigate, userInfo]);
+
+    const handleSubmit = async (values, { setSubmitting }) => {
         try {
             await dispatch(login(values.username, values.password));
             setSubmitting(false);
-            navigate('/'); // Navigate to the home page on successful login
-            console.log('login successfully')
+            navigate('/');
+            console.log('login successfully');
         } catch (error) {
             setSubmitting(false);
         }
+    };
 
-        const [email, setEmail] = useState('');
-        const [password, setPassword] = useState('');
-        const dispatch = useDispatch();
-        const navigate = useNavigate();
-
-        const {userInfo} = login(email, password);
-
-        useEffect(() => {
-            if (userInfo) {
-                navigate("/");
-            }
-        }, [navigate, userInfo])
-
-        const handleSignIn = (e) => {
-            e.preventDefault();
-            dispatch(login(email, password))
-        };
+    const handleSignIn = (e) => {
+        e.preventDefault();
+        dispatch(login(email, password));
+    };
 
         return (
             <div className="max-w-sm mx-auto bg-white p-8 my-8 rounded shadow-md">
@@ -100,6 +99,5 @@ const Login = () => {
             </div>
         );
     };
-};
 
 export default Login;
