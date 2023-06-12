@@ -1,14 +1,17 @@
 import { configureStore } from "@reduxjs/toolkit";
-import moviesReducer from "../features/movieSlice";
 import userReducer from "../features/userSlice";
 import registrationReducer from "../features/registrationSlice";
 import loginReducer from "../features/loginSlice";
+import theaterReducer from "../features/theater/theaterSlice";
+import movieSlice from "../components/movie/movieSlice";
 
 const store = configureStore({
   reducer: {
     registration: registrationReducer,
     user: userReducer,
     login: loginReducer,
+    movie: movieSlice,
+    theater: theaterReducer,
   },
 });
 
