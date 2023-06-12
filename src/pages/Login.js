@@ -1,25 +1,24 @@
 import React, {useState, useEffect} from 'react';
 import {Typography} from "@material-tailwind/react";
-import { useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { userLogin } from '.././features/auth/authActions'
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { userLogin } from '.././features/auth/authActions';
 
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const { loading, userInfo, error } = useSelector((state) => state.auth)
+    const dispatch = useDispatch()
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (userInfo) {
             navigate("/");
         }
     }, [navigate, userInfo])
-
-    const { loading, userInfo, error } = useSelector((state) => state.auth)
-    const dispatch = useDispatch()
-
-    const navigate = useNavigate()
-
+    
     // redirect authenticated user to profile screen
     useEffect(() => {
         if (userInfo) {
