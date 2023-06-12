@@ -1,46 +1,51 @@
 import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
-import {getTheaters, selectSuccess, selectTheaterList, setSuccess} from "../../features/theater/theaterSlice";
-
+// import {useDispatch, useSelector} from "react-redux";
+// import {useNavigate} from "react-router-dom";
+// import {
+//     getTheater,
+//     getTheaters,
+//     selectSuccess, selectTheater,
+//     selectTheaterList,
+//     setSuccess
+// } from "../../features/theater/theaterSlice";
+//
 const TheatreDetail = () => {
-    const [theaters, setTheaters] = useState([]);
-    const [movie, setMovie] = useState()
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const theaterList = useSelector(selectTheaterList);
-    const success = useSelector(selectSuccess);
-
-    const getTheaterList = async () => {
-        if (!success) {
-            dispatch(getTheaters());
-        } else {
-            setTheaters(theaterList);
-            dispatch(setSuccess(true));
-        }
-    };
-
-    useEffect(() => {
-        getTheaterList();
-        getMovieList();
-    }, [success]);
+//     const [theater, setTheater] = useState([]);
+//     const dispatch = useDispatch();
+//     const navigate = useNavigate();
+//     const theaterMovie = useSelector(selectTheater);
+//     const success = useSelector(selectSuccess);
+//
+//     const getTheaterMovie = async () => {
+//         if (!success) {
+//             dispatch(getTheater());
+//         } else {
+//             setTheater(theaterMovie);
+//             dispatch(setSuccess(true));
+//         }
+//     };
+//
+//     useEffect(() => {
+//         getTheaterMovie();
+//
+//
+//     }, [success]);
 
 
     return (
         <div>
+            {/*<div>*/}
+            {/*    <span>Mọi đối tượng </span>*/}
+            {/*    <span>13 Tuổi trở lên </span>*/}
+            {/*    <span>16 tuổi trở lên </span>*/}
+            {/*    <span>18 tuổi trở lên </span>*/}
+            {/*</div>*/}
             <div>
-                <span>Mọi đối tượng </span>
-                <span>13 Tuổi trở lên </span>
-                <span>16 tuổi trở lên </span>
-                <span>18 tuổi trở lên </span>
-            </div>
-            <div>
-                {theaters.map((theater) => (
+                {/*{theater.map((theater) => (*/}
+                {/*    <div>*/}
 
-                    <div>
-                        {}
-                    </div>
-                ))}
+                {/*    </div>*/}
+                {/*))}*/}
             </div>
         </div>
     );

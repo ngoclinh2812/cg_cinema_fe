@@ -1,17 +1,25 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import {findAllTheaters} from "../../api/theaterAPI";
+import {findAllTheaters, findTheater} from "../../api/theaterAPI";
 
 const initialState = {
     values: null,
+    value: null,
     loading: false,
     error: null,
     success: false,
 };
 
-export const getTheaters = createAsyncThunk("theater", async () => {
+export const getTheaters = createAsyncThunk("theater",
+    async () => {
     const response = await findAllTheaters();
     return response.data.dataList;
 });
+
+export const getTheater = createAsyncThunk("theater/detail",
+    async (theaterId) => {
+    const response = await findTheater(theaterId);
+    return response.data;
+})
 
 export const theaterSlice = createSlice({
     name: "theater",
@@ -45,14 +53,33 @@ export const theaterSlice = createSlice({
                 state.values = action.payload;
                 state.error = false;
             })
+            // Update states of get book action
+            .addCase(getTheater.pending, (state) => {
+                state.success = false;
+                state.loading = true;
+                state.error = false;
+            })
+            .addCase(getTheater.rejected, (state, action) => {
+                state.success = false;
+                state.loading = false;
+                state.error = action.error;
+            })
+            .addCase(getTheater.fulfilled, (state, action) => {
+                state.success = true;
+                state.loading = false;
+                state.value = action.payload;
+                state.error = false;
+            })
     }
 });
 
 
 export const { setLoading, setError, setSuccess } = theaterSlice.actions;
 
-export const selectLoading = (state) => state.theater?.loading;
-export const selectError = (state) => state.theater?.error;
-export const selectSuccess = (state) => state.theater?.success;
-export const selectTheaterList = (state) => state.theater?.values;
+export const selectLoading = (state) => state.theater.loading;
+export const selectError = (state) => state.theater.error;
+export const selectSuccess = (state) => state.theater.success;
+export const selectTheaterList = (state) => state.theater.values;
+export const selectTheater = (state) => state.theater.value;
+
 export default theaterSlice.reducer;

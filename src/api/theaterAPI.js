@@ -11,3 +11,13 @@ export const findAllTheaters = async () => {
     }
     return result;
 };
+
+export const findTheater = async (theaterId) => {
+    let result = null;
+    try {
+        result = await axios.get(`${CG_THEATER_API}/theaters/${theaterId}`);
+    } catch (e) {
+        console.log("Find theater API error: " + e)
+    }
+    return result;
+};
