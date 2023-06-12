@@ -14,7 +14,7 @@ const MovieCard = ({ title, imageUrl ,rating}) => {
         case 'G':
             bgColor = 'bg-green-400';
             break;
-        case '13':
+        case 'PG-13':
             bgColor = 'bg-purple-400';
             break;
         case '18':
