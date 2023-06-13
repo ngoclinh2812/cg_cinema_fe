@@ -6,7 +6,9 @@ import Homepage from "./pages/Homepage";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import TheatreList from "./pages/TheatreList";
-import CarouselHomepage from "./components/carousel/CarouselHomepage";
+import RegisterConfirmed from "./pages/RegisterConfirm";
+import MovieDetails from "./pages/MovieDetails";
+import { useState } from "react";
 
 function App() {
     return (
@@ -20,15 +22,26 @@ function App() {
 
 function AppContent() {
     const location = useLocation();
+    const [loggedIn, setLoggedIn] = useState(false);
+
+    const handleLoginSuccess = () => {
+        setLoggedIn(true);
+    };
+
+    const handleLogout = () => {
+        setLoggedIn(false);
+    };
 
     return (
         <div className={location.pathname === '/' ? 'relative' : ''}>
-            <NavigationBar className='sticky'/>
+            <NavigationBar loggedIn={loggedIn} onLogout={handleLogout} />
             <Routes>
-                <Route index element={<Homepage />} />
-                <Route path="/login" element={<Login />} />
+                <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess} />} />
+                <Route path="/" element={<Homepage />} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/register-confirm" element={<RegisterConfirmed />}/>
                 <Route path="/theatre" element={<TheatreList />} />
+                <Route path="/movies/:title" element={<MovieDetails />}/>
             </Routes>
             <Footer />
         </div>

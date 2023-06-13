@@ -5,7 +5,7 @@ import {Button} from "flowbite-react";
 import {IoTicketOutline} from "react-icons/io5";
 import {MdOutlineLocalMovies} from "react-icons/md";
 
-const MovieCard = ({ title, imageUrl ,rating}) => {// nen them csdl
+const MovieCard = ({ title, imageUrl ,rating}) => {
     let bgColor = '';
     switch (rating){
         case 'PG':
@@ -14,7 +14,7 @@ const MovieCard = ({ title, imageUrl ,rating}) => {// nen them csdl
         case 'G':
             bgColor = 'bg-green-400';
             break;
-        case '13':
+        case 'PG-13':
             bgColor = 'bg-purple-400';
             break;
         case '18':
@@ -41,13 +41,13 @@ const MovieCard = ({ title, imageUrl ,rating}) => {// nen them csdl
                     <div className="mb-2">
                         <Link to="/">
                             <Button className="p-button-outlined p-button-success mr-4">
-                                <IoTicketOutline className="text-lg mr-2" /> Tickets
+                                <IoTicketOutline className="text-lg mr-2" /> Buy Ticket
                             </Button>
                         </Link>
                     </div>
                     <div>
-                        <Link to="/">
-                            <Button className="p-button-outlined p-button-success mr-4">
+                        <Link to={`/movies/${title}`}>
+                            <Button className="p-button-outlined p-button-success mr-4" >
                                 <MdOutlineLocalMovies className="text-lg mr-2" /> Details
                             </Button>
                         </Link>
