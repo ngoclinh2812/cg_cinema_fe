@@ -107,6 +107,7 @@ const TheatreListTab = () => {
                                     </span>
                                     {theaterDt.map((theater, index) => (
                                         <div key={index}>
+                                            
                                             {theater.movie_name}
                                             {theater.show_time}
                                         </div>
