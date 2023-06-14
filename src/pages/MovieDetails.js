@@ -1,18 +1,39 @@
 import React from 'react';
-import { Card, CardBody, CardImage, CardTitle, CardText } from '@material-tailwind/react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { selectError, selectLoading, selectMovieDetails } from '../components/movie/movieSlice';
+import { fetchMovieDetails } from '../features/movie/movieSlice';
+import { useParams } from 'react-router-dom';
 
-const MovieDetails = ({ id, title, imageUrl, rating }) => {
+
+const MovieDetails = () => {
+    const { id } = useParams();
+    const dispatch = useDispatch();
+    const loading = useSelector(selectLoading);
+    const movieDetails = useSelector(selectMovieDetails);
+    const error = useSelector(selectError);
+  
+    useEffect(() => {
+      dispatch(fetchMovieDetails(id));
+    }, [dispatch, id]);
+  
+    if (loading) {
+      return <div>Loading...</div>;
+    }
+  
+    if (error) {
+      return <div>Error: {error}</div>;
+    }
+  
     return (
-        <Card>
-            <CardImage src={imageUrl} alt={title} />
-            <CardBody>
-                <CardTitle>{title}</CardTitle>
-                <CardText>ID: {id}</CardText>
-                <CardText>Rating: {rating}</CardText>
-            </CardBody>
-        </Card>
+      <div>
+        <h4>{movieDetails?.title}</h4>
+        <p>ID: {movieDetails?.id}</p>
+        <p>Rating: {movieDetails?.rating}</p>
+      </div>
     );
-};
-
-export default MovieDetails;
+  };
+  
+  export default MovieDetails;
 

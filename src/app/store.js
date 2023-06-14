@@ -3,14 +3,14 @@ import userReducer from "../features/userSlice";
 import registrationReducer from "../features/registrationSlice";
 import loginReducer from "../features/loginSlice";
 import theaterReducer from "../features/theater/theaterSlice";
-import movieSlice from "../components/movie/movieSlice";
+import movieReducer from "../components/movie/movieSlice";
 
 const store = configureStore({
   reducer: {
     registration: registrationReducer,
     user: userReducer,
     login: loginReducer,
-    movie: movieSlice,
+    movie: movieReducer,
     theater: theaterReducer,
   },
 });

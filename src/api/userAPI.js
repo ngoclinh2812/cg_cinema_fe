@@ -38,7 +38,6 @@ export const checkDuplicateEmail = async (email) => {
 
 export const registerUser = async (userData) => {
     try {
-
         const response = await axios.post(`${BASE_URL}/signup`, userData);
         console.log(userData)
         return response.data;
