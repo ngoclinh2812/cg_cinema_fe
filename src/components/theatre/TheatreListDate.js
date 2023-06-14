@@ -30,7 +30,6 @@ export const TheatreListDate = () => {
                 {/*<div className={"d-flex flex-wrap"}>*/}
                 {/*    <span>Năm</span>*/}
                 {/*</div>*/}
-
                     <td></td>
             </div>
         </fieldset>

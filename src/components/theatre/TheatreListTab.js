@@ -11,10 +11,11 @@ import {
 import {useDispatch, useSelector} from "react-redux";
 import "../../asset/styles/theater.css"
 import {Link} from "react-router-dom";
+import axios from "axios";
+import AgeRestriction from "./AgeRestriction";
 
 
 const TheatreListTab = () => {
-    const [loading, setLoading] = useState(false);
     const [activeTab, setActiveTab] = React.useState("Theater 1");
     const [theaters, setTheaters] = useState([]);
     const dispatch = useDispatch();
@@ -25,50 +26,36 @@ const TheatreListTab = () => {
     const theaterDetail = useSelector(selectTheater);
 
     const getTheaterList = async () => {
-        setLoading(true)
         if (!success) {
             await dispatch(getTheaters());
         } else {
             setTheaters(theaterList);
-            dispatch(setSuccess(true));
-            setLoading(false)
         }
     };
 
+
+
     useEffect(() => {
         getTheaterList();
-        getTheaterDetail(theaterId);
-
+        if (theaterId){
+            getTheaterDetail(theaterId);
+        }
     }, [success, theaterList, theaterId, theaterDetail]);
 
-
-    useEffect(() =>{
-        setLoading(true)
-    }, [theaters])
-
-    // useEffect(() => {
-    //     if(theaterId) {
-    //         getTheaterDetail(theaterId);
-    //     }
-    // }, [theaterId])
-
     const getTheaterDetail = async (theaterId) => {
-        console.log('success: ',success)
-        if (!success) {
-            await dispatch(getTheater(theaterId))
-            console.log(theaterId)
-            if(theaterDetail) {
-                setTheaterDt(theaterDetail)
-            }
-        } else {
-            setTheaterDt(theaterDetail)
-            dispatch(setSuccess(true))
+
+        let result = null;
+        try {
+            result = await axios.get(`http://localhost:8080/api/theaters/${theaterId}`);
+            setTheaterDt(result.data);
+        } catch (e) {
+            console.log("Find theater API error: " + e)
         }
     }
 
 
-    console.log('theaterId: ', theaterId)
-    console.log('theaterDetail: ', theaterDetail)
+
+    console.log("TheaterDt: ", theaterDt)
 
     return (
         <div className="">
@@ -92,8 +79,8 @@ const TheatreListTab = () => {
                     ))}
                 </TabsHeader>
                 <TabsBody>
-                        {theaters && theaterDt &&  theaters.map((theater, index) => (
-                            <TabPanel key={index} value={theater.name}>
+                        {theaters && theaterDt &&  theaters.map((theater, theaterId) => (
+                            <TabPanel key={theaterId} value={theater.name}>
                                 <div className={"theater-body"}>
                                     <h1>
                                         {theater.name}
@@ -101,17 +88,27 @@ const TheatreListTab = () => {
                                     <p>
                                         {theater.address}
                                     </p>
-                                    <span className={"month"}>
-                                        <em>number </em>
-                                        <span>month and year {theaterId}</span>
-                                    </span>
-                                    {theaterDt.map((theater, index) => (
-                                        <div key={index}>
-                                            
-                                            {theater.movie_name}
-                                            {theater.show_time}
-                                        </div>
-                                    ))}
+                                    <AgeRestriction/>
+                                    <div className="theater-list">
+                                        {theaterDt.map((theater, index) => (
+                                            <div className="theater-item" key={index}>
+                                                <div className="movie-info">
+                                                    <div className="movie-name">{theater.movie_name}</div>
+                                                    <div className="show-room">
+                                                        <div className="show-room-info">
+                                                            <div className="show-time">{theater.show_time}</div>
+                                                            <hr className="divider"/>
+                                                            <div className="room-info">
+                                                                <div className="room-name">{theater.room_name}</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+
+
                                 </div>
                             </TabPanel>
                         ))}
