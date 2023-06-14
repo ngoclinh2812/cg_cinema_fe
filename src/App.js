@@ -9,6 +9,7 @@ import TheatreList from "./pages/TheatreList";
 import RegisterConfirmed from "./pages/RegisterConfirm";
 import MovieDetails from "./pages/MovieDetails";
 import { useState } from "react";
+import {Room} from "./components/theatre/Room";
 
 function App() {
     return (
@@ -41,6 +42,8 @@ function AppContent() {
                 <Route path="/register" element={<Register />} />
                 <Route path="/register-confirm" element={<RegisterConfirmed />}/>
                 <Route path="/theatre" element={<TheatreList />} />
+                <Route path="/room" element={<Room />} />
+
                 <Route path="/movies/:title" element={<MovieDetails />}/>
             </Routes>
             <Footer />

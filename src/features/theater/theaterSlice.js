@@ -79,7 +79,7 @@ export const { setLoading, setError, setSuccess } = theaterSlice.actions;
 export const selectLoading = (state) => state.theater.loading;
 export const selectError = (state) => state.theater.error;
 export const selectSuccess = (state) => state.theater.success;
-export const selectTheaterList = (state) => state.theater.values;
-export const selectTheater = (state) => state.theater.value;
+export const selectTheaterList = (state) => state.theater?.values;
+export const selectTheater = (state) => state.theater?.value;
 
 export default theaterSlice.reducer;
