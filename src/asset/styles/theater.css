@@ -11,4 +11,66 @@
     height: 100%;
 }
 
+.contai {
+    display: flex;
+    gap: 10px;
+}
+
+.group {
+    display: flex;
+    align-items: center;
+}
+
+.group img {
+    margin-right: 5px;
+}
+
+.theater-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.theater-item {
+    margin-bottom: 10px;
+}
+
+.movie-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.movie-name {
+    font-weight: bold;
+}
+
+.show-room {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.show-room-info {
+    padding: 5px;
+    background-color: #f0f0f0;
+}
+
+.divider {
+    width: 100%;
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 5px 0;
+}
+
+.room-info {
+    display: flex;
+    justify-content: center;
+}
+
+.room-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
 
