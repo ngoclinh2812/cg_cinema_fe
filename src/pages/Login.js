@@ -23,8 +23,8 @@ const Login = () => {
         try {
             await dispatch(login(values.username, values.password));
             setSubmitting(false);
-            navigate('/');
             console.log('login successfully');
+            navigate('/');
         } catch (error) {
             setSubmitting(false);
         }

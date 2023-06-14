@@ -67,7 +67,10 @@ export const MovieSlider = () => {
                     {(searchValue !== "" ? searchResults : movieList || []).map(
                         (movie) => (
                             <SwiperSlide key={movie.id}>
-                                <MovieCard title={movie.name} imageUrl={movie.img} />
+                                <MovieCard
+                                    title={movie.name.length > 20 ? `${movie.name.substring(0, 15)}...` : movie.name}
+                                    imageUrl={movie.img}
+                                />
                             </SwiperSlide>
                         )
                     )}
