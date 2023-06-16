@@ -10,10 +10,8 @@ import { fetchMovies, setSuccess } from "../../features/movie/movieSlice";
 export const MovieSlider = () => {
     const [searchValue, setSearchValue] = useState("");
     const [searchResults, setSearchResults] = useState([]);
-    // const [movieList, setMovieList] = useState([]);
     const movieList = useSelector((state) => state.movie.movies);
     const success = useSelector((state) => state.movie.success);
-    // const [success, setSuccess] = useState(false);
     const dispatch = useDispatch();
 
     const getMovieList = async () => {
@@ -25,9 +23,12 @@ export const MovieSlider = () => {
     };
 
     useEffect(() => {
-        console.log("movieList: " + movieList);
         getMovieList();
-    }, [success]);
+    }, []);
+
+    useEffect(() => {
+        console.log(movieList);
+    }, [movieList]);
 
     const handleSearch = () => {
         const results = movieList.filter((movie) =>
@@ -67,9 +68,13 @@ export const MovieSlider = () => {
                         (movie) => (
                             <SwiperSlide key={movie.id}>
                                 <Link to={`/movies/${movie.id}`}>
+                                    <p>{movie.id}</p>
                                     <MovieCard
-                                    title={movie.name.length > 20 ? `${movie.name.substring(0, 15)}...` : movie.name}
-                                    imageUrl={movie.img}
+                                        title={
+                                            movie.name.length > 20 ? `${movie.name.substring(0, 15)}...` : movie.name
+                                        }
+                                        imageUrl={movie.img}
+                                        id = {movie.id}
                                     />
                                 </Link>
                             </SwiperSlide>
