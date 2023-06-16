@@ -10,6 +10,7 @@ import RegisterConfirmed from "./pages/RegisterConfirm";
 import MovieDetails from "./pages/MovieDetails";
 import { useState } from "react";
 import DateCalculator from "./components/movie/DateCalculator";
+import {Room} from "./components/theatre/Room";
 
 function App() {
     return (
@@ -44,7 +45,8 @@ function AppContent() {
                 <Route path="/register" element={<Register />} />
                 <Route path="/register-confirm" element={<RegisterConfirmed />}/>
                 <Route path="/theatre" element={<TheatreList />} />
-                <Route path="/movies/:title" element={<MovieDetails />}/>
+                <Route path="/room" element={<Room />} />
+                <Route path="/movies/:id" element={<MovieDetails />}/>
             </Routes>
             <Footer />
         </div>

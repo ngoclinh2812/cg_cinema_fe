@@ -5,23 +5,27 @@ import "swiper/css/navigation";
 import MovieCard from "../card/MovieCard";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import {
-    getMovies,
-    selectMovieList,
-    setSuccess,
-} from "../../components/movie/movieSlice";
+// import {
+//     fetchMovies,
+//     selectMovieList,
+//     setSuccess,
+// } from "../../components/movie/movieSlice";
+import { fetchMovies, selectMovieList, setSuccess } from "../../features/movie/movieSlice";
 
 export const MovieSlider = () => {
     const [searchValue, setSearchValue] = useState("");
     const [searchResults, setSearchResults] = useState([]);
-    const movieList = useSelector(selectMovieList);
+    // const [movieList, setMovieList] = useState([]);
+    const movieList = useSelector((state) => state.movie.movies);
     const success = useSelector((state) => state.movie.success);
+    // const [success, setSuccess] = useState(false);
     const dispatch = useDispatch();
 
     useEffect(() => {
+        // console.log(movieList);
         const getMovieList = async () => {
             if (!success) {
-                dispatch(getMovies());
+                dispatch(fetchMovies());
             } else {
                 dispatch(setSuccess(true));
             }
@@ -67,7 +71,12 @@ export const MovieSlider = () => {
                     {(searchValue !== "" ? searchResults : movieList || []).map(
                         (movie) => (
                             <SwiperSlide key={movie.id}>
-                                <MovieCard title={movie.name} imageUrl={movie.img} />
+                                <Link to={`/movies/${movie.id}`}>
+                                    <MovieCard
+                                    title={movie.name.length > 20 ? `${movie.name.substring(0, 15)}...` : movie.name}
+                                    imageUrl={movie.img}
+                                    />
+                                </Link>
                             </SwiperSlide>
                         )
                     )}
