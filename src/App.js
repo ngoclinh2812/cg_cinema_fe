@@ -9,13 +9,16 @@ import TheatreList from "./pages/TheatreList";
 import RegisterConfirmed from "./pages/RegisterConfirm";
 import MovieDetails from "./pages/MovieDetails";
 import { useState } from "react";
+import DateCalculator from "./components/movie/DateCalculator";
 
 function App() {
     return (
         <div>
             <BrowserRouter>
                 <AppContent />
+                <DateCalculator />
             </BrowserRouter>
+
         </div>
     );
 }

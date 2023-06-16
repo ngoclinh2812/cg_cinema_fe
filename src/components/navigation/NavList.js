@@ -11,7 +11,7 @@ export const MovieNavList = () => {
                     size="sm"
                 >
                     <Dropdown.Item>
-                        <a href="/">Now Showing</a>
+                        <a href="">Now Showing</a>
                     </Dropdown.Item>
                     <Dropdown.Item>
                         Coming Soon
