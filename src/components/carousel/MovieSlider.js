@@ -68,7 +68,6 @@ export const MovieSlider = () => {
                         (movie) => (
                             <SwiperSlide key={movie.id}>
                                 <Link to={`/movies/${movie.id}`}>
-                                    <p>{movie.id}</p>
                                     <MovieCard
                                         title={
                                             movie.name.length > 20 ? `${movie.name.substring(0, 15)}...` : movie.name
