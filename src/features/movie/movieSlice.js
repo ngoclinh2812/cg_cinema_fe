@@ -17,7 +17,7 @@ export const fetchMovies = createAsyncThunk("movies/fetchMovies", async () => {
       } catch (error) {
           console.log("Fetch movies API error: " + error);
       }
-      return result?.data;
+      return result?.data.dataList;
   });
 
 // Async thunk to fetch movie details
@@ -74,7 +74,7 @@ export const movieSlice = createSlice({
               })
             .addCase(fetchMovieDetails.fulfilled, (state, action) => {
                 state.loading = false;
-                state.movieDetails = action.payload;
+                state.movie = action.payload;
                 state.error = null;
             })
     },

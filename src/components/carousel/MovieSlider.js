@@ -4,13 +4,8 @@ import "swiper/swiper.min.css";
 import "swiper/css/navigation";
 import MovieCard from "../card/MovieCard";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useParams } from "react-router-dom";
-// import {
-//     fetchMovies,
-//     selectMovieList,
-//     setSuccess,
-// } from "../../components/movie/movieSlice";
-import { fetchMovies, selectMovieList, setSuccess } from "../../features/movie/movieSlice";
+import { Link } from "react-router-dom";
+import { fetchMovies, setSuccess } from "../../features/movie/movieSlice";
 
 export const MovieSlider = () => {
     const [searchValue, setSearchValue] = useState("");
@@ -21,16 +16,16 @@ export const MovieSlider = () => {
     // const [success, setSuccess] = useState(false);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        // console.log(movieList);
-        const getMovieList = async () => {
-            if (!success) {
-                dispatch(fetchMovies());
-            } else {
-                dispatch(setSuccess(true));
-            }
-        };
+    const getMovieList = async () => {
+        if (!success) {
+            dispatch(fetchMovies());
+        } else {
+            dispatch(setSuccess(true));
+        }
+    };
 
+    useEffect(() => {
+        console.log("movieList: " + movieList);
         getMovieList();
     }, [success]);
 
