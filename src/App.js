@@ -43,7 +43,7 @@ function AppContent() {
                 <Route path="/register-confirm" element={<RegisterConfirmed />}/>
                 <Route path="/theatre" element={<TheatreList />} />
                 <Route path="/room" element={<Room />} />
-                <Route path="/movies/:id" element={<MovieDetails />}/>
+                <Route path="/movies/:movieId" element={<MovieDetails />} />
             </Routes>
             <Footer />
         </div>
