@@ -42,8 +42,7 @@ function AppContent() {
                 <Route path="/register" element={<Register />} />
                 <Route path="/register-confirm" element={<RegisterConfirmed />}/>
                 <Route path="/theatre" element={<TheatreList />} />
-                <Route path="/room" element={<Room />} />
-
+                 <Route path="/room/:room_id" element={<Room />} />
                 <Route path="/movies/:title" element={<MovieDetails />}/>
             </Routes>
             <Footer />
