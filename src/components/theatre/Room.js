@@ -37,11 +37,11 @@ export const Room = () => {
 
   return (
     <>
-      <div>
-        <h1>Name Movie: </h1>
-      </div>
       <div className="wrapper">
         <div className="container">
+          <div>
+            <h1>Name Movie: </h1>
+          </div>
           <ul className="showcase">
             <li>
               <div className="seat"></div>

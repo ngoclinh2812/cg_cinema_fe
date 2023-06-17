@@ -39,16 +39,14 @@ function AppContent() {
         <div className={location.pathname === '/' ? 'relative' : ''}>
             <NavigationBar loggedIn={loggedIn} onLogout={handleLogout} />
             <Routes>
+                <Route path="/theatre/room/:roomId" element={<Room />} />
                 <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess} />} />
                 <Route path="/profile" element={<Profile />}  />
                 <Route path="/" element={<Homepage />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/register-confirm" element={<RegisterConfirmed />}/>
                 <Route path="/theatre" element={<TheatreList />} />
-                <Route path="/theatre/room/:roomId" element={<Room />} />
                 <Route path="/room" element={<Room />} />
-                <Route path="/movies/:title" element={<MovieDetails />}/>
-                <Route path="/movies/:id" element={<MovieDetails />}/>
                 <Route path="/movies/:movieId" element={<MovieDetails />} />
             </Routes>
             <Footer />
