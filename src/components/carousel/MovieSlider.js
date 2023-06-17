@@ -6,6 +6,8 @@ import MovieCard from "../card/MovieCard";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchMovies, setSuccess } from "../../features/movie/movieSlice";
+import { Button } from '@material-tailwind/react';
+
 
 export const MovieSlider = () => {
     const [searchValue, setSearchValue] = useState("");
@@ -41,6 +43,8 @@ export const MovieSlider = () => {
         <>
             {/*<div className="font-semibold text-4xl mx-auto">Featured Movie</div>*/}
             <div className="relative">
+                <h2 className="text-4xl font-bold text-center mb-6">Search movies</h2><br />
+
                 <div className="flex justify-center mt-4">
                     <input
                         type="text"
@@ -49,13 +53,14 @@ export const MovieSlider = () => {
                         value={searchValue}
                         onChange={(e) => setSearchValue(e.target.value)}
                     />
-                    <button
+                    <Button
                         type="button"
-                        className="px-4 py-2 ml-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
+                        color="teal" ripple="light" rounded={true} size="lg"
+                        style={{marginLeft: '10px'}}
                         onClick={handleSearch}
                     >
                         Search
-                    </button>
+                    </Button>
                 </div>
                 <Swiper
                     spaceBetween={80}
