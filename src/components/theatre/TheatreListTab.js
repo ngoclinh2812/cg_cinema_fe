@@ -29,8 +29,6 @@ const TheatreListTab = () => {
   const theaterList = useSelector(selectTheaterList);
   const success = useSelector(selectSuccess);
   const [theaterId, setTheaterId] = useState(1);
-  const [theaterDt, setTheaterDt] = useState([]);
-  const theaterDetail = useSelector(selectTheater);
 
   const getTheaterList = async () => {
     if (!success) {

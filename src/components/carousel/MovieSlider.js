@@ -4,29 +4,28 @@ import "swiper/swiper.min.css";
 import "swiper/css/navigation";
 import MovieCard from "../card/MovieCard";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useParams } from "react-router-dom";
-import {
-    getMovies,
-    selectMovieList,
-    setSuccess,
-} from "../../components/movie/movieSlice";
+import { Link } from "react-router-dom";
+import { fetchMovies, setSuccess } from "../../features/movie/movieSlice";
 
 export const MovieSlider = () => {
     const [searchValue, setSearchValue] = useState("");
     const [searchResults, setSearchResults] = useState([]);
-    const movieList = useSelector(selectMovieList);
+    // const [movieList, setMovieList] = useState([]);
+    const movieList = useSelector((state) => state.movie.movies);
     const success = useSelector((state) => state.movie.success);
+    // const [success, setSuccess] = useState(false);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        const getMovieList = async () => {
-            if (!success) {
-                dispatch(getMovies());
-            } else {
-                dispatch(setSuccess(true));
-            }
-        };
+    const getMovieList = async () => {
+        if (!success) {
+            dispatch(fetchMovies());
+        } else {
+            dispatch(setSuccess(true));
+        }
+    };
 
+    useEffect(() => {
+        console.log("movieList: " + movieList);
         getMovieList();
     }, [success]);
 
@@ -67,7 +66,12 @@ export const MovieSlider = () => {
                     {(searchValue !== "" ? searchResults : movieList || []).map(
                         (movie) => (
                             <SwiperSlide key={movie.id}>
-                                <MovieCard title={movie.name} imageUrl={movie.img} />
+                                <Link to={`/movies/${movie.id}`}>
+                                    <MovieCard
+                                    title={movie.name.length > 20 ? `${movie.name.substring(0, 15)}...` : movie.name}
+                                    imageUrl={movie.img}
+                                    />
+                                </Link>
                             </SwiperSlide>
                         )
                     )}

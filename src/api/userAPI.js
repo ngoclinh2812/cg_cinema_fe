@@ -38,7 +38,6 @@ export const checkDuplicateEmail = async (email) => {
 
 export const registerUser = async (userData) => {
     try {
-
         const response = await axios.post(`${BASE_URL}/signup`, userData);
         console.log(userData)
         return response.data;
@@ -50,6 +49,7 @@ export const registerUser = async (userData) => {
 export const loginUser = async (credentials) => {
     try {
         const response = await axios.post(`${BASE_URL}/login`, credentials);
+        console.log(response.data);
         return response.data;
     } catch (error) {
         console.error(error);

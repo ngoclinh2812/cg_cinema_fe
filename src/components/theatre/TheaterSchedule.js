@@ -74,7 +74,7 @@ export default function TheaterSchedule(props) {
                       )}
                       <div className="show-room">
                         <div className="show-room-info">
-                           <Link to={`room/${theater.room_id}`} >
+                           <Link to={`/theatre/room/${theater.room_id}`} >
                             <button>
                               <div className="show-time">
                                 {theater.show_time}
