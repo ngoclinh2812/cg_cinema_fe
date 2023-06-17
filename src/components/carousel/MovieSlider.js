@@ -39,7 +39,7 @@ export const MovieSlider = () => {
 
     return (
         <>
-            <div className="font-semibold text-4xl mx-auto">Featured Movie</div>
+            {/*<div className="font-semibold text-4xl mx-auto">Featured Movie</div>*/}
             <div className="relative">
                 <div className="flex justify-center mt-4">
                     <input
