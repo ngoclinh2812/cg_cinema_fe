@@ -5,7 +5,7 @@ import {Button} from "flowbite-react";
 import {IoTicketOutline} from "react-icons/io5";
 import {MdOutlineLocalMovies} from "react-icons/md";
 
-const MovieCard = ({ title, imageUrl ,rating}) => {
+const MovieCard = ({ id, title , imageUrl ,rating}) => {
     let bgColor = '';
     switch (rating){
         case 'PG':
@@ -46,7 +46,7 @@ const MovieCard = ({ title, imageUrl ,rating}) => {
                         </Link>
                     </div>
                     <div>
-                        <Link to={`/movies/${title}`}>
+                        <Link to={`/movies/${id}`}>
                             <Button className="p-button-outlined p-button-success mr-4" >
                                 <MdOutlineLocalMovies className="text-lg mr-2" /> Details
                             </Button>

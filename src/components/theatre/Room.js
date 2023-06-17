@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getRoom, selectRoom, selectSuccess} from "../../features/room/roomSlice";
 import {useParams} from "react-router-dom";
 import axios from "axios";
+import 'bootstrap/dist/css/bootstrap.css';
 import error from "../Error";
 
 export const Room = () => {
@@ -22,11 +23,9 @@ export const Room = () => {
 
   const handleSeatClick = (index) => {
     if (selectedSeats.includes(index)) {
-      // Ghế đã được chọn, hủy chọn nó
       const updatedSeats = selectedSeats.filter(seatIndex => seatIndex !== index);
       setSelectedSeats(updatedSeats);
     } else {
-      // Ghế chưa được chọn, kiểm tra xem có vượt quá số ghế tối đa được chọn không
       if (selectedSeats.length < MAX_SELECTED_SEATS) {
         const updatedSeats = [...selectedSeats, index];
         setSelectedSeats(updatedSeats);
@@ -58,14 +57,13 @@ export const Room = () => {
             </li>
           </ul>
           <div className="screen"></div>
-          <div className="row row-cols-4">
+          <div className="row row-cols-xxl-6">
             {seats.map((seat, index) => (
                 <div
                     className={`col seat ${selectedSeats.includes(index) ? 'selected' : ''} ${seat.sold ? 'sold' : ''}`}
                     key={index}
                     onClick={() => handleSeatClick(index)}
                 >
-
                   {seat.seat_name}
                 </div>
             ))}

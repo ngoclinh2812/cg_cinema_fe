@@ -2,12 +2,27 @@ import React, {useEffect, useState} from 'react';
 import logo from '../../asset/images/codegym-logo.jpg';
 import { Navbar } from 'flowbite-react';
 import { MovieNavList, StoreNavList, TheatreNavList } from './NavList';
-import { Link, useLocation } from 'react-router-dom';
+import {Link, useLocation, useNavigate} from 'react-router-dom';
 import { FaUser } from 'react-icons/fa';
+import jwtDecode from "jwt-decode";
+
 
 const NavigationBar = ({ loggedIn, onLogout }) => {
     const [scrollNav, setScrollNav] = useState(false);
     const location = useLocation();
+    const token = localStorage.getItem('token');
+    let userName = '';
+    // localStorage.removeItem('token');
+
+    if (token) {
+        try {
+            const decodedToken = jwtDecode(token);
+            userName = decodedToken.username;
+            console.log(userName);
+        } catch (error) {
+            console.error('Error decoding token:', error);
+        }
+    }
 
     useEffect(() => {
         const handleScroll = () => {
@@ -25,6 +40,7 @@ const NavigationBar = ({ loggedIn, onLogout }) => {
     const navbarClassName = `text-white-500 z-50 w-full bg-opacity-1 ${
         location.pathname === '/' ? 'fixed' : 'sticky top-0 mb-4'
     } ${location.pathname === '/' && !scrollNav ? 'bg-opacity-0' : ''}`;
+
 
     return (
         <Navbar fluid className={navbarClassName} style={{ alignItems: 'center', backgroundColor: '#272882' }}>
@@ -50,19 +66,24 @@ const NavigationBar = ({ loggedIn, onLogout }) => {
                 </div>
 
                 <div className="flex items-center md:order-2">
-                    {loggedIn ? (
+                    {token ? (
                         <Profile onLogout={onLogout} />
                     ) : (
                         <Link
                             to="/login"
                             className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                         >
-              <span className="hidden md:flex items-center">
-                <FaUser className="text-lg mr-2" />
-                <span>Join Us Now!</span>
-              </span>
-
-                            <FaUser className="text-lg md:hidden " />
+                            {token ? (
+                                <span className="hidden md:flex items-center">
+                                  <FaUser className="text-lg mr-2" />
+                                  <span>{userName}</span>
+                                </span>
+                            ) : (
+                                <>
+                                    <FaUser className="text-lg md:hidden " />
+                                    <span>Join Us Now!</span>
+                                </>
+                            )}
                         </Link>
                     )}
                 </div>
@@ -71,9 +92,12 @@ const NavigationBar = ({ loggedIn, onLogout }) => {
     );
 };
 
-const Profile = ({ onLogout }) => {
+const Profile = ({ onLogout, username }) => {
+    const navigate = useNavigate();
+
     const handleLogout = () => {
-        // Perform logout logic, e.g., clearing session, etc.
+        localStorage.removeItem('token');
+        navigate('/login');
         onLogout();
     };
 
@@ -82,8 +106,11 @@ const Profile = ({ onLogout }) => {
             <div className="flex md:order-2">
                 {/* Profile Dropdown or Content */}
                 <Link to="/profile" className="text-white mr-4">
-                    Profile
+                    <button className="text-white bg-red-600 hover:bg-white-700 font-medium rounded-lg text-sm px-5 py-2.5">
+                        Profile
+                    </button>
                 </Link>
+
                 <button onClick={handleLogout} className="text-white bg-red-600 hover:bg-red-700 font-medium rounded-lg text-sm px-5 py-2.5">
                     Sign Out
                 </button>

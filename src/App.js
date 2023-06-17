@@ -10,6 +10,7 @@ import RegisterConfirmed from "./pages/RegisterConfirm";
 import MovieDetails from "./pages/MovieDetails";
 import { useState } from "react";
 import {Room} from "./components/theatre/Room";
+import Profile from "./pages/Profile";
 
 function App() {
     return (
@@ -31,6 +32,7 @@ function AppContent() {
 
     const handleLogout = () => {
         setLoggedIn(false);
+        localStorage.removeItem('token');
     };
 
     return (
@@ -38,6 +40,7 @@ function AppContent() {
             <NavigationBar loggedIn={loggedIn} onLogout={handleLogout} />
             <Routes>
                 <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess} />} />
+                <Route path="/profile" element={<Profile />}  />
                 <Route path="/" element={<Homepage />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/register-confirm" element={<RegisterConfirmed />}/>
@@ -46,6 +49,7 @@ function AppContent() {
                 <Route path="/room" element={<Room />} />
                 <Route path="/movies/:title" element={<MovieDetails />}/>
                 <Route path="/movies/:id" element={<MovieDetails />}/>
+                <Route path="/movies/:movieId" element={<MovieDetails />} />
             </Routes>
             <Footer />
         </div>

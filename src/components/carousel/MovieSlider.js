@@ -10,10 +10,8 @@ import { fetchMovies, setSuccess } from "../../features/movie/movieSlice";
 export const MovieSlider = () => {
     const [searchValue, setSearchValue] = useState("");
     const [searchResults, setSearchResults] = useState([]);
-    // const [movieList, setMovieList] = useState([]);
     const movieList = useSelector((state) => state.movie.movies);
     const success = useSelector((state) => state.movie.success);
-    // const [success, setSuccess] = useState(false);
     const dispatch = useDispatch();
 
     const getMovieList = async () => {
@@ -25,9 +23,12 @@ export const MovieSlider = () => {
     };
 
     useEffect(() => {
-        console.log("movieList: " + movieList);
         getMovieList();
-    }, [success]);
+    }, []);
+
+    useEffect(() => {
+        console.log(movieList);
+    }, [movieList]);
 
     const handleSearch = () => {
         const results = movieList.filter((movie) =>
@@ -38,7 +39,7 @@ export const MovieSlider = () => {
 
     return (
         <>
-            <div className="font-semibold text-4xl mx-auto">Featured Movie</div>
+            {/*<div className="font-semibold text-4xl mx-auto">Featured Movie</div>*/}
             <div className="relative">
                 <div className="flex justify-center mt-4">
                     <input
@@ -68,8 +69,11 @@ export const MovieSlider = () => {
                             <SwiperSlide key={movie.id}>
                                 <Link to={`/movies/${movie.id}`}>
                                     <MovieCard
-                                    title={movie.name.length > 20 ? `${movie.name.substring(0, 15)}...` : movie.name}
-                                    imageUrl={movie.img}
+                                        title={
+                                            movie.name.length > 20 ? `${movie.name.substring(0, 15)}...` : movie.name
+                                        }
+                                        imageUrl={movie.img}
+                                        id = {movie.id}
                                     />
                                 </Link>
                             </SwiperSlide>
