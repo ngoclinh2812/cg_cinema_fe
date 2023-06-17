@@ -53,7 +53,6 @@ export const theaterSlice = createSlice({
                 state.values = action.payload;
                 state.error = false;
             })
-            // Update states of get book action
             .addCase(getTheater.pending, (state) => {
                 state.success = false;
                 state.loading = true;

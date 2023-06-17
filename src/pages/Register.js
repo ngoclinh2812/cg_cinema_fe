@@ -13,6 +13,7 @@ const Register = () => {
     const dispatch = useDispatch();
     const { loading, error, success } = useSelector((state) => state.registration);
     const navigate = useNavigate();
+    localStorage.removeItem('token');
 
     const initialValues = {
         firstName: '',

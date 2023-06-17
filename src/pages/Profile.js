@@ -61,28 +61,26 @@ const Profile = () => {
                 <h1>Ticket List</h1>
                 <table>
                     <thead>
-                        <tr>#</tr>
-                        <tr>Date</tr>
-                        <tr>Time</tr>
-                        <tr>Movie name</tr>
-                        <tr>Price</tr>
+                    <tr>
+                        <th>#</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Movie name</th>
+                        <th>Price</th>
+                    </tr>
                     </thead>
                     <tbody>
                     {ticketList.map((ticket) => (
-                        <div key={ticket.id}>
-                            <tr>
-                                <td>Ticket ID: {ticket.id}</td>
-                                <p>Ticket Name: {ticket.show_date}</p>
-                                <p>Ticket Name: {ticket.show_time}</p>
-                                <p>Ticket Name: {ticket.movie_name}</p>
-                                <p>Price: {ticket.movie_name}</p>
-                            </tr>
-
-                        </div>
+                        <tr key={ticket.id}>
+                            <td>Ticket ID: {ticket.id}</td>
+                            <td>Ticket Name: {ticket.show_date}</td>
+                            <td>Ticket Name: {ticket.show_time}</td>
+                            <td>Ticket Name: {ticket.movie_name}</td>
+                            <td>Price: {ticket.movie_name}</td>
+                        </tr>
                     ))}
                     </tbody>
                 </table>
-
             </div>
         </>
 

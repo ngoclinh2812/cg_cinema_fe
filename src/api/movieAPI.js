@@ -13,7 +13,7 @@ export const fetchMoviesFromAPI = async () => {
 };
 
 export const movie = async (movieId) => {
-    const response = null;
+    let response = null;
     try {
         response = await axios.get(`${MOVIE_API}/${movieId}`)
         console.log(response.data);
