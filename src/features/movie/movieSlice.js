@@ -11,7 +11,9 @@ const initialState = {
 
 const MOVIE_API = "http://localhost:8080/api/movies";
 
-export const fetchMovies = createAsyncThunk("movies/fetchMovies", async () => {
+export const fetchMovies = createAsyncThunk(
+    "movies/fetchMovies",
+    async () => {
       let result = null;
       try {
           result = await axios.get(`${MOVIE_API}`);
