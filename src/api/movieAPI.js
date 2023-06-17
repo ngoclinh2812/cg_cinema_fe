@@ -24,3 +24,14 @@ export const movie = async (movieId) => {
         return null;
     }
 }
+
+    export const OnGoing = async () => {
+        let result = null;
+        try {
+            result = await axios.get(`${Movie_API}/movies/ongoing`);
+        } catch (e) {
+            console.log("Find movie API error: " + e);
+        }
+        return result;
+
+}

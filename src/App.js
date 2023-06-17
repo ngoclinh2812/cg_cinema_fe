@@ -9,7 +9,6 @@ import TheatreList from "./pages/TheatreList";
 import RegisterConfirmed from "./pages/RegisterConfirm";
 import MovieDetails from "./pages/MovieDetails";
 import { useState } from "react";
-import DateCalculator from "./components/movie/DateCalculator";
 import {Room} from "./components/theatre/Room";
 
 function App() {
@@ -17,7 +16,6 @@ function App() {
         <div>
             <BrowserRouter>
                 <AppContent />
-                <DateCalculator />
             </BrowserRouter>
 
         </div>

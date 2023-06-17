@@ -1,5 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import {fetchMoviesFromAPI , OnGoing} from "../../api/movieAPI";
+
 
 const initialState = {
     movies: [],
@@ -13,7 +15,7 @@ const MOVIE_API = "http://localhost:8080/api";
 export const fetchMovies = createAsyncThunk("movies/fetchMovies", async () => {
       let result = null;
       try {
-          result = await axios.get(`${MOVIE_API}/movies`);
+          result = await fetchMoviesFromAPI();
       } catch (error) {
           console.log("Fetch movies API error: " + error);
       }
