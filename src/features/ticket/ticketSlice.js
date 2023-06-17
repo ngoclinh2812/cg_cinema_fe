@@ -14,7 +14,8 @@ const BASE_URL = "http://localhost:8080/api/ticket";
 export const getTickets = createAsyncThunk(
     "ticket/getTickets",
     async () => {
-        const token = localStorage.getItem("token");
+        const token = localStorage.getItem('token');
+        console.log(token);
         if (!token) {
             return null;
         }
@@ -38,14 +39,14 @@ const ticketSlice = createSlice({
     name: "ticket",
     initialState,
     reducers: {
-        setTicket: (state, action) => {
-            state.ticket = action.payload;
-        },
         setLoading: (state, action) => {
             state.loading = action.payload;
         },
         setError: (state, action) => {
             state.error = action.payload;
+        },
+        setSuccess: (state, action) => {
+            state.success = action.payload;
         },
     },
     extraReducers: (builder) => {
@@ -65,7 +66,7 @@ const ticketSlice = createSlice({
     },
 });
 
-export const { setTicket, setLoading, setError } = ticketSlice.actions;
+export const { setSuccess, setLoading, setError } = ticketSlice.actions;
 export const selectTickets = (state) => state.ticket.ticketList;
 
 export default ticketSlice.reducer;
