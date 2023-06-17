@@ -1,5 +1,4 @@
 import axios from "axios";
-import { MOVIE_API } from "./API";
 const Movie_API ="http://localhost:8080/api";
 
 export const fetchMoviesFromAPI = async () => {
@@ -13,25 +12,24 @@ export const fetchMoviesFromAPI = async () => {
 };
 
 export const movie = async (movieId) => {
-    const response = null;
+    let response = null;
     try {
-        response = await axios.get(`${MOVIE_API}/${movieId}`)
+        response = await axios.get(`${Movie_API}/${movieId}`)
         console.log(response.data);
         return response.data;
     } catch (error) {
         console.error(error);
-        // Handle error
-        return null;
+        // Handle erro
+        return response;
     }
-}
+};
 
-    export const OnGoing = async () => {
-        let result = null;
-        try {
-            result = await axios.get(`${Movie_API}/movies/ongoing`);
-        } catch (e) {
-            console.log("Find movie API error: " + e);
-        }
-        return result;
-
-}
+export const fetchOngoingMovie = async () => {
+    let result = null;
+    try {
+        result = await axios.get(`${Movie_API}/movies/ongoing`);
+    } catch (e) {
+        console.log("Find movie API error: " + e);
+    }
+    return result;
+};

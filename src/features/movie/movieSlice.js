@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import {fetchMoviesFromAPI, movie, OnGoing} from "../../api/movieAPI";
+import {fetchMoviesFromAPI , fetchOngoingMovie} from "../../api/movieAPI";
 
 
 const initialState = {
@@ -16,23 +16,38 @@ const MOVIE_API = "http://localhost:8080/api/movies";
 export const fetchMovies = createAsyncThunk("movies/fetchMovies", async () => {
       let result = null;
       try {
+
           result = await fetchMoviesFromAPI();
           result = await axios.get(`${MOVIE_API}`);
+          console.log(result.data.dataList)
       } catch (error) {
           console.log("Fetch movies API error: " + error);
       }
       return result?.data.dataList;
   });
 
+export const fetchOngoingMovies = createAsyncThunk("movies/fetchOngoingMovie",
+    async () => {
+    let result = null;
+    try {
+        result = await fetchOngoingMovie();
+        result = await axios.get(`${MOVIE_API}`);
+        console.log(result.data.dataList)
+    } catch (error) {
+        console.log("Fetch movies API error: " + error);
+    }
+    return result?.data.dataList;
+});
+
 // Async thunk to fetch movie details
 export const fetchMovieDetails = createAsyncThunk(
       'movies/fetchMovieDetails',
       async (movieId) => {
+          console.log("data")
           console.log(movieId);
         let result = null;
         try {
-
-          result = await movie(movieId) ;
+          result = await axios.get(`${MOVIE_API}/${movieId}`);
           console.log(result.data);
         } catch (error) {
           console.log('Fetch movie details API error: ' + error);
