@@ -2,28 +2,30 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
-    user: null,
+    ticketList: [],
+    ticket: {},
     loading: false,
     error: null,
+    success: false
 };
 
-const BASE_URL = "http://localhost:8080/api/sf/account";
+const BASE_URL = "http://localhost:8080/api/ticket";
 
-export const getUserProfile = createAsyncThunk(
-    "user/getUserProfile",
-    async (_, thunkAPI) => {
+export const getTickets = createAsyncThunk(
+    "ticket/getTickets",
+    async () => {
         const token = localStorage.getItem("token");
         if (!token) {
             return null;
         }
         try {
-            const response = await axios.get(`${BASE_URL}/profile`, {
+            const response = await axios.get(`${BASE_URL}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            console.log(response.data);
-            return response.data;
+            console.log(response.data.dataList);
+            return response.data.dataList;
         } catch (error) {
             console.error(error);
             throw error;
@@ -31,12 +33,13 @@ export const getUserProfile = createAsyncThunk(
     }
 );
 
-const userSlice = createSlice({
-    name: "user",
+
+const ticketSlice = createSlice({
+    name: "ticket",
     initialState,
     reducers: {
-        setUser: (state, action) => {
-            state.user = action.payload;
+        setTicket: (state, action) => {
+            state.ticket = action.payload;
         },
         setLoading: (state, action) => {
             state.loading = action.payload;
@@ -47,21 +50,22 @@ const userSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(getUserProfile.pending, (state) => {
+            .addCase(getTickets.pending, (state) => {
                 state.loading = true;
                 state.error = null;
             })
-            .addCase(getUserProfile.fulfilled, (state, action) => {
+            .addCase(getTickets.fulfilled, (state, action) => {
                 state.loading = false;
-                state.user = action.payload;
+                state.ticketList = action.payload;
             })
-            .addCase(getUserProfile.rejected, (state, action) => {
+            .addCase(getTickets.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
             });
     },
 });
 
-export const { setUser, setLoading, setError } = userSlice.actions;
+export const { setTicket, setLoading, setError } = ticketSlice.actions;
+export const selectTickets = (state) => state.ticket.ticketList;
 
-export default userSlice.reducer;
+export default ticketSlice.reducer;

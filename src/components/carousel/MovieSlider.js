@@ -25,7 +25,11 @@ export const MovieSlider = () => {
 
     useEffect(() => {
         getMovieList();
-    }, [success]);
+    }, []);
+
+    useEffect(() => {
+        console.log(movieList);
+    }, [movieList]);
 
     const handleSearch = () => {
         if (searchValue !== "") {
@@ -65,6 +69,8 @@ export const MovieSlider = () => {
 
 
             <div className="font-semibold text-4xl mx-auto">Featured Movie</div>
+
+            {/*<div className="font-semibold text-4xl mx-auto">Featured Movie</div>*/}
             <div className="relative">
                 <div className="flex justify-center mt-4">
                     <input
@@ -102,6 +108,8 @@ export const MovieSlider = () => {
                             </Link>
                         </SwiperSlide>
                     ))}
+
+
                 </Swiper>
             </div>
         </>
