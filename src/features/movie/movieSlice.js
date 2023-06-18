@@ -4,7 +4,8 @@ import { fetchMoviesFromAPI, onGoingMovies, comingSoonMovies } from "../../api/m
 
 const initialState = {
     movies: [],
-    movie: {},
+    movie: {id: "",
+            name: ""},
     ongoingMovies: [],
     comingSoonMovies: [],
     loading: false,
@@ -87,6 +88,11 @@ export const movieSlice = createSlice({
         setSuccess: (state, action) => {
             state.success = action.payload;
         },
+        setMovieDetails: (state, action) => {
+            const { id, name } = action.payload;
+            state.movie.id = id;
+            state.movie.name = name;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -157,6 +163,7 @@ export const selectOngoingMovies = (state) => state.movie.ongoingMovies;
 export const selectComingSoonMovies = (state) => state.movie.comingSoonMovies;
 export const selectMovieRemoved = (state) => state.movie.movie;
 export const selectMovieDetails = (state) => state.movie.movie;
+export const { setMovieDetails } = movieSlice.actions;
 
 export default movieSlice.reducer;
 
