@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import {BrowserRouter, Route, Routes, useLocation} from "react-router-dom";
 import Footer from "./components/Footer";
 import NavigationBar from "./components/navigation/NavigationBar";
 import Homepage from "./pages/Homepage";
@@ -8,7 +8,7 @@ import Register from "./pages/Register";
 import TheatreList from "./pages/TheatreList";
 import RegisterConfirmed from "./pages/RegisterConfirm";
 import MovieDetails from "./pages/MovieDetails";
-import { useState } from "react";
+import {useState} from "react";
 import {Room} from "./components/theatre/Room";
 import Profile from "./pages/Profile";
 import {OrderConfirm} from "./pages/OrderConfirm";

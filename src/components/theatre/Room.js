@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import error from "../Error";
+import {useDispatch, useSelector} from "react-redux";
 import { setRoomId, saveTicket } from "../../features/ticket/ticketSlice";
 import "../../asset/styles/room.css";
+import {selectTheater} from "../../features/theater/theaterSlice";
+import {selectMovieDetails} from "../../features/movie/movieSlice";
 
 export const Room = () => {
   const CG_THEATER_API = "http://localhost:8080/api";
@@ -14,6 +17,8 @@ export const Room = () => {
   const [scrollNav, setScrollNav] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const movieDetails = useSelector(selectMovieDetails);
+  const { id: movieId, name: movieName } = movieDetails;
 
   useEffect(() => {
     axios
@@ -52,18 +57,13 @@ export const Room = () => {
     }
   };
 
+  console.log(seats)
+
   const handleNextButtonClick = () => {
     navigate("/order-confirm");
-    // if (selectedSeats.length > 0) {
-    //   dispatch(saveTicket())
-    //       .then(() => {
-    //         navigate("/order-confirm");
-    //       })
-    //       .catch((error) => {
-    //         console.error(error);
-    //       });
-    // }
   };
+
+
 
   const renderSeats = () => {
     const rows = Math.ceil(seats.length / 8); // Calculate the number of rows based on seat count and 8 seats per row
@@ -103,7 +103,7 @@ export const Room = () => {
         <div className="wrapper">
           <div className="container">
             <div>
-              <h1>Please select your seat</h1><br />
+              <h1>Movie name: {movieName}</h1><br />
             </div>
             <ul className="showcase">
               <li>
@@ -120,7 +120,17 @@ export const Room = () => {
               </li>
             </ul>
             <div className="screen"></div>
-            <div>{renderSeats()}</div>
+            <div className="row row-cols-xxl-6">
+              {seats.map((seat, index) => (
+                  <div
+                      className={`col seat ${selectedSeats.includes(index) ? 'selected' : ''} ${seat.sold ? 'sold' : ''}`}
+                      key={index}
+                      onClick={() => handleSeatClick(index)}
+                  >
+                    {seat.seat_name}
+                  </div>
+              ))}
+            </div>
             <br />
             <button
                 className="btn btn-primary next-button"
