@@ -11,6 +11,9 @@ import MovieDetails from "./pages/MovieDetails";
 import { useState } from "react";
 import {Room} from "./components/theatre/Room";
 import Profile from "./pages/Profile";
+import {OrderConfirm} from "./pages/OrderConfirm";
+import {OrderCompleted} from "./pages/OrderCompleted";
+import themeSlice from "./features/theme/themeSlice";
 
 function App() {
     return (
@@ -35,22 +38,25 @@ function AppContent() {
         localStorage.removeItem('token');
     };
 
+
     return (
-        <div className={location.pathname === '/' ? 'relative' : ''}>
-            <NavigationBar loggedIn={loggedIn} onLogout={handleLogout} />
-            <Routes>
-                <Route path="/theatre/room/:roomId" element={<Room />} />
-                <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess} />} />
-                <Route path="/profile" element={<Profile />}  />
-                <Route path="/" element={<Homepage />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/register-confirm" element={<RegisterConfirmed />}/>
-                <Route path="/theatre" element={<TheatreList />} />
-                <Route path="/room" element={<Room />} />
-                <Route path="/movies/:movieId" element={<MovieDetails />} />
-            </Routes>
-            <Footer />
-        </div>
+            <div className={location.pathname === '/' ? 'relative' : ''}>
+                <NavigationBar loggedIn={loggedIn} onLogout={handleLogout} />
+                <Routes>
+                    <Route path="/theatre/room/:roomId" element={<Room />} />
+                    <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess} />} />
+                    <Route path="/profile" element={<Profile />}  />
+                    <Route path="/" element={<Homepage />} />
+                    <Route path="/register" element={<Register />} />
+                    <Route path="/register-confirm" element={<RegisterConfirmed />}/>
+                    <Route path="/theatre" element={<TheatreList />} />
+                    <Route path="/room" element={<Room />} />
+                    <Route path="/movies/:movieId" element={<MovieDetails />} />
+                    <Route path="/order-confirm" element={<OrderConfirm />}/>
+                    <Route path="/order-completed" element={<OrderCompleted />}/>
+                </Routes>
+                <Footer />
+            </div>
     );
 }
 

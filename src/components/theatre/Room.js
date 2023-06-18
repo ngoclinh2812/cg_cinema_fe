@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { setRoomId } from "../../features/ticket/ticketSlice";
+import { setRoomId, saveTicket } from "../../features/ticket/ticketSlice";
 import "../../asset/styles/room.css";
-import 'bootstrap/dist/css/bootstrap.css';
 
 export const Room = () => {
   const CG_THEATER_API = "http://localhost:8080/api";
@@ -14,6 +13,7 @@ export const Room = () => {
   const MAX_SELECTED_SEATS = 1;
   const [scrollNav, setScrollNav] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -52,12 +52,58 @@ export const Room = () => {
     }
   };
 
+  const handleNextButtonClick = () => {
+    navigate("/order-confirm");
+    // if (selectedSeats.length > 0) {
+    //   dispatch(saveTicket())
+    //       .then(() => {
+    //         navigate("/order-confirm");
+    //       })
+    //       .catch((error) => {
+    //         console.error(error);
+    //       });
+    // }
+  };
+
+  const renderSeats = () => {
+    const rows = Math.ceil(seats.length / 8); // Calculate the number of rows based on seat count and 8 seats per row
+    const seatElements = [];
+
+    for (let i = 0; i < rows; i++) {
+      const rowSeats = seats.slice(i * 8, (i + 1) * 8); // Get 8 seats for each row
+
+      const row = rowSeats.map((seat, index) => (
+          <div
+              className={`seat ${
+                  selectedSeats.includes(i * 8 + index) ? "selected" : ""
+              } ${seat.sold ? "sold" : ""}`}
+              key={i * 8 + index}
+              onClick={() => handleSeatClick(i * 8 + index)}
+              style={{
+                display: "inline-block",
+                margin: "5px", // Adjust the margin to increase space between seats
+              }}
+          >
+            {seat.seat_name}
+          </div>
+      ));
+
+      seatElements.push(
+          <div className="row" key={i}>
+            {row}
+          </div>
+      );
+    }
+
+    return seatElements;
+  };
+
   return (
       <>
         <div className="wrapper">
           <div className="container">
             <div>
-              <h1>Name Movie: </h1>
+              <h1>Please select your seat</h1><br />
             </div>
             <ul className="showcase">
               <li>
@@ -74,25 +120,16 @@ export const Room = () => {
               </li>
             </ul>
             <div className="screen"></div>
-            <div className="row row-cols-xxl-6">
-              {seats.map((seat, index) => (
-                  <div
-                      className={`col seat ${
-                          selectedSeats.includes(index) ? "selected" : ""
-                      } ${seat.sold ? "sold" : ""}`}
-                      key={index}
-                      onClick={() => handleSeatClick(index)}
-                  >
-                    {seat.seat_name}
-                  </div>
-              ))}
-            </div>
-
-            {/*<p className="text">*/}
-            {/*  You have selected <span id="count">{selectedSeats.length}</span>{" "}*/}
-            {/*  seat for a price of RS.*/}
-            {/*  <span id="total">{selectedSeats.length * seatPrice}</span>*/}
-            {/*</p>*/}
+            <div>{renderSeats()}</div>
+            <br />
+            <button
+                className="btn btn-primary next-button"
+                onClick={handleNextButtonClick}
+                disabled={selectedSeats.length === 0}
+                style={{backgroundColor: 'teal', color: 'white'}}
+            >
+              Next
+            </button>
           </div>
         </div>
       </>
