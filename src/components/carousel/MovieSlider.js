@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchMovies, setSuccess } from "../../features/movie/movieSlice";
 import { Button } from '@material-tailwind/react';
+import {Dropdown} from "flowbite-react";
 
 
 export const MovieSlider = () => {
@@ -39,12 +40,13 @@ export const MovieSlider = () => {
         setSearchResults(results);
     };
 
+
+
     return (
         <>
-            {/*<div className="font-semibold text-4xl mx-auto">Featured Movie</div>*/}
-            <div className="relative">
-                <h2 className="text-4xl font-bold text-center mb-6">Search movies</h2>
-
+            <div className="relative" style={{ }}>
+                <br />
+                <h2 className="text-4xl font-family text-center text-6xl py-1">Search movies</h2>
                 <div className="flex justify-center mt-4">
                     <input
                         type="text"
@@ -62,9 +64,19 @@ export const MovieSlider = () => {
                         Search
                     </Button>
                 </div>
+                <br />
+                <div className="text-center">
+                    <Button style={{backgroundColor: 'teal'}} variant="primary" className="mr-2">
+                        <Link to="/ongoing" className="button-link">Ongoing</Link>
+                    </Button>
+                    <Button style={{backgroundColor: 'teal'}} variant="primary">
+                        <Link to="/comingSoon" className="button-link">ComingSoon</Link>
+                    </Button>
+                </div>
+                <div className="text-center" style={{  }}>
                 <Swiper
-                    spaceBetween={80}
-                    slidesPerView={4}
+                    spaceBetween={40}
+                    slidesPerView={3}
                     onSlideChange={() => console.log("slide change")}
                     onSwiper={(swiper) => console.log(swiper)}
                     className="my-6 mx-auto"
@@ -85,6 +97,7 @@ export const MovieSlider = () => {
                         )
                     )}
                 </Swiper>
+                </div>
             </div>
         </>
     );
