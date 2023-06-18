@@ -3,7 +3,16 @@ import {findAllTheaters, findTheater} from "../../api/theaterAPI";
 
 const initialState = {
     values: [],
-    value: {},
+    value: {
+        room_id: '',
+        movie_id: '',
+        theater_id: '',
+        movie_name: '',
+        show_time: '',
+        show_date: '',
+        theater_name: '',
+        room_name: ''
+    },
     rooms: [],
     loading: false,
     error: null,
@@ -38,6 +47,12 @@ export const theaterSlice = createSlice({
         },
         setRooms: (state, action) => {
             state.rooms = action.payload;
+        },
+        // Update specific properties in the theater
+        setTheaterProperty: (state, action) => {
+            const { property, value } = action.payload;
+            state.value[property] = value;
+            console.log(property, value);
         },
     },
     extraReducers: (builder) => {
@@ -86,5 +101,6 @@ export const selectSuccess = (state) => state.theater.success;
 export const selectTheaterList = (state) => state.theater?.values;
 export const selectTheater = (state) => state.theater?.value;
 export const selectRoomList = (state) => state.theater?.rooms;
+export const { setTheaterProperty } = theaterSlice.actions;
 
 export default theaterSlice.reducer;

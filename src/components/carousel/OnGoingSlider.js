@@ -44,7 +44,7 @@ export const OnGoingSlider = () => {
                                             ? `${movie.name.substring(10, 15)}...`
                                             : movie.name
                                     }
-                                    imageUrl={movie.imageUrl}
+                                    img={movie.img}
                                     id={movie.id}
                                 />
                             </Link>

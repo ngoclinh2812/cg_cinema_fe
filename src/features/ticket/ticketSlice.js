@@ -91,6 +91,9 @@ const ticketSlice = createSlice({
             state.error = null;
             state.success = false;
         },
+        setSeatId: (state, action) => {
+            state.ticket.seat.id = action.payload;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -111,7 +114,7 @@ const ticketSlice = createSlice({
     },
 });
 
-export const { setSuccess, setLoading, setError, clearTicket, setScheduleMovie, setSeat, setRoomId } = ticketSlice.actions;
+export const { setSuccess, setLoading, setError, clearTicket, setScheduleMovie, setSeat, setRoomId, setSeatId } = ticketSlice.actions;
 export const selectTickets = (state) => state.ticket.ticketList;
 export const selectTicket = (state) => state.ticket.ticket;
 

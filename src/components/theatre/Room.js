@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import error from "../Error";
 import {useDispatch, useSelector} from "react-redux";
-import { setRoomId, saveTicket } from "../../features/ticket/ticketSlice";
+import { setRoomId, setSeatId, saveTicket } from "../../features/ticket/ticketSlice";
 import "../../asset/styles/room.css";
 import {selectTheater} from "../../features/theater/theaterSlice";
 import {selectMovieDetails} from "../../features/movie/movieSlice";
@@ -19,6 +19,7 @@ export const Room = () => {
   const navigate = useNavigate();
   const movieDetails = useSelector(selectMovieDetails);
   const { id: movieId, name: movieName } = movieDetails;
+  // const seatId = useSelector(selectTicket).seat.id;
 
   useEffect(() => {
     axios
@@ -42,9 +43,7 @@ export const Room = () => {
 
   const handleSeatClick = (index) => {
     if (selectedSeats.includes(index)) {
-      const updatedSeats = selectedSeats.filter(
-          (seatIndex) => seatIndex !== index
-      );
+      const updatedSeats = selectedSeats.filter((seatIndex) => seatIndex !== index);
       setSelectedSeats(updatedSeats);
     } else {
       if (selectedSeats.length < MAX_SELECTED_SEATS) {
@@ -53,15 +52,20 @@ export const Room = () => {
 
         const selectedRoomId = seats[index].room_id;
         dispatch(setRoomId(selectedRoomId));
+
+        const selectedSeatId = seats[index].id; // Add this line to get the seat id
+        dispatch(setSeatId(selectedSeatId)); // Dispatch setSeatId action
       }
     }
   };
+
 
   console.log(seats)
 
   const handleNextButtonClick = () => {
     navigate("/order-confirm");
   };
+
 
 
 

@@ -5,7 +5,7 @@ import {Button} from "flowbite-react";
 import {IoTicketOutline} from "react-icons/io5";
 import {MdOutlineLocalMovies} from "react-icons/md";
 
-const MovieCard = ({ id, title , imageUrl ,rating ,date}) => {
+const MovieCard = ({ id, title , img ,rating ,date}) => {
     let bgColor = '';
     switch (rating){
         case 'PG':
@@ -27,8 +27,8 @@ const MovieCard = ({ id, title , imageUrl ,rating ,date}) => {
             <div className="h-48 w-1/2 overflow-visible">
                 <img
                     className="rounded-3xl shadow-lg h-full w-full object-cover"
-                    src={imageUrl}
-                    alt={`${title} + ${imageUrl} + ${date} `}
+                    src={img}
+                    alt={`${title} + ${img} + ${date} `}
                 />
             </div>
             <div className="flex flex-col w-1/2 space-y-4">

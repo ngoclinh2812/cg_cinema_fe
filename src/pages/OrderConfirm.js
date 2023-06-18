@@ -9,6 +9,7 @@ export const OrderConfirm = () => {
     const dispatch = useDispatch();
     const ticket = useSelector((state) => state.ticket.ticket);
     const user = useSelector((state) => state.user.user);
+    const movieName = useSelector((state) => state.movie.movie.name);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -49,7 +50,7 @@ export const OrderConfirm = () => {
                             <tbody>
                             <tr>
                                 <td>Movie:</td>
-                                <td>{ticket.scheduleMovie.movie.name}</td>
+                                <td>{movieName}</td>
                             </tr>
                             <tr>
                                 <td>Room:</td>

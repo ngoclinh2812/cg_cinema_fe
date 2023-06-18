@@ -89,7 +89,7 @@ export const MovieSlider = () => {
                                         title={
                                             movie.name.length > 20 ? `${movie.name.substring(0, 15)}...` : movie.name
                                         }
-                                        imageUrl={movie.imageUrl}
+                                        img={movie.img}
                                         id = {movie.id}
                                     />
                                 </Link>

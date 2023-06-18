@@ -38,7 +38,7 @@ const MovieDetails = () => {
                 <div className="max-w-3xl bg-white p-8 rounded-lg shadow-md mt-6">
                     <div className="flex flex-col md:flex-row">
                         <div className="w-full md:w-3/5 md:pl-8">
-                            <img src={movieDetails?.imageUrl} alt="Movie Poster" /><br />
+                            <img src={movieDetails?.img} alt="Movie Poster" /><br />
                             <h4 className="text-3xl font-bold mb-4">{movieDetails?.name}</h4>
                             <p className="text-gray-600 text-lg mb-4"><strong>Mô tả: </strong>{movieDetails?.description}</p>
                             <p className="text-gray-600 text-lg mb-4"><strong>Thể loại: </strong>{movieDetails?.genre}</p>
