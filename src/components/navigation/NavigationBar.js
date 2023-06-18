@@ -51,9 +51,9 @@ const NavigationBar = ({ loggedIn, onLogout }) => {
                         <span className="self-center whitespace-nowrap text-xl font-semibold mr-4 text-white">CG Cinema</span>
                     </Navbar.Brand>
                     <Navbar.Collapse>
-                        <Navbar.Link className="mr-4">
-                            <MovieNavList />
-                        </Navbar.Link>
+                        {/*<Navbar.Link className="mr-4">*/}
+                        {/*    <MovieNavList />*/}
+                        {/*</Navbar.Link>*/}
                         <Navbar.Link className="mr-4">
                             <a href="/theatre">
                                 <TheatreNavList />

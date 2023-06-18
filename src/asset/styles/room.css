@@ -79,3 +79,9 @@
 .gap {
     width: 30px;
 }
+
+.next-button {
+    border-radius: 100px; /* Make the button rounder */
+    padding: 12px 24px; /* Increase the button size */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a shadow */
+}

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation, Pagination } from 'swiper';
@@ -8,7 +8,8 @@ import {
     selectOngoingMovies,
 } from '../../features/movie/movieSlice';
 import { Link } from 'react-router-dom';
-import {Button} from "@material-tailwind/react";
+import { Button } from '@material-tailwind/react';
+import '../../css/CarouselHomepage.css';
 
 const CarouselHomepage = () => {
     const dispatch = useDispatch();
@@ -91,7 +92,13 @@ const CarouselHomepage = () => {
                 {ongoingMovies.map((movie) => (
                     <SwiperSlide key={movie.id} style={getSlideStyle()}>
                         <div style={getOverlayStyle()} />
-                        <img src={movie.img} alt={movie.name} className="mx-auto w-full object-cover" />
+                        <div className="image-container">
+                            <img
+                                src={movie.img}
+                                alt={movie.name}
+                                className="mx-auto w-full object-cover"
+                            />
+                        </div>
                         <div style={getContainerStyle()}>
                             <h2 style={getTitleStyle()}>{movie.name}</h2>
                             <p style={getDescriptionStyle()}>{movie.description}</p>
