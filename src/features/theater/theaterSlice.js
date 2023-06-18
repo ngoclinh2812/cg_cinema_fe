@@ -2,8 +2,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import {findAllTheaters, findTheater} from "../../api/theaterAPI";
 
 const initialState = {
-    values: null,
-    value: null,
+    values: [],
+    value: {},
     loading: false,
     error: null,
     success: false,
@@ -12,12 +12,14 @@ const initialState = {
 export const getTheaters = createAsyncThunk("theater",
     async () => {
     const response = await findAllTheaters();
+    console.log(response.data.dataList);
     return response.data.dataList;
 });
 
 export const getTheater = createAsyncThunk("theater/detail",
     async (theaterId) => {
-    const response = await findTheater(theaterId);
+        console.log("theaterId: ", theaterId);
+        const response = await findTheater(theaterId);
     return response.data;
 })
 

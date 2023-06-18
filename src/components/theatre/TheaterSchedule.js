@@ -41,7 +41,7 @@ export default function TheaterSchedule(props) {
     let result = null;
     try {
       result = await axios.get(
-        `http://localhost:8080/api/theaters/${theaterId}`
+          `http://localhost:8080/api/theaters/${theaterId}`
       );
       setTheaterDt(result.data);
     } catch (e) {
@@ -51,51 +51,51 @@ export default function TheaterSchedule(props) {
   let previousMovie = "";
 
   return (
-    <>
-      {theaters &&
-        theaterDt &&
-        theaters.map((theater, theaterId) => (
-          <TabPanel key={theaterId} value={theater.name}>
-            <div className={"theater-body"}>
-              <h1>{theater.name}</h1>
-              <p>{theater.address}</p>
-              <AgeRestriction />
-              <div className="theater-list">
-                {theaterDt.map((theater, index) => {
-                  const currentMovie = theater.movie_name;
-                  const shouldDisplayMovieName = currentMovie !== previousMovie;
-                  previousMovie = currentMovie;
-                  return (
-                    <div className="theater-item" key={index}>
-                      {shouldDisplayMovieName && (
-                        <div className="movie-info">
-                          <div className="movie-name">{currentMovie}</div>
-                        </div>
-                      )}
-                      <div className="show-room">
-                        <div className="show-room-info">
-                           <Link to={`/theatre/room/${theater.room_id}`} >
-                            <button>
-                              <div className="show-time">
-                                {theater.show_time}
-                              </div>
-                              <hr className="divider" />
-                              <div className="room-info">
-                                <div className="room-name">
-                                  {theater.room_name}
+      <>
+        {theaters &&
+            theaterDt &&
+            theaters.map((theater, theaterId) => (
+                <TabPanel key={theaterId} value={theater.name}>
+                  <div className={"theater-body"}>
+                    <h1>{theater.name}</h1>
+                    <p>{theater.address}</p>
+                    <AgeRestriction />
+                    <div className="theater-list">
+                      {theaterDt.map((theater, index) => {
+                        const currentMovie = theater.movie_name;
+                        const shouldDisplayMovieName = currentMovie !== previousMovie;
+                        previousMovie = currentMovie;
+                        return (
+                            <div className="theater-item" key={index}>
+                              {shouldDisplayMovieName && (
+                                  <div className="movie-info">
+                                    <div className="movie-name">{currentMovie}</div>
+                                  </div>
+                              )}
+                              <div className="show-room">
+                                <div className="show-room-info">
+                                  <Link to={`/theatre/room/${theater.room_id}`} >
+                                    <button>
+                                      <div className="show-time">
+                                        {theater.show_time}
+                                      </div>
+                                      <hr className="divider" />
+                                      <div className="room-info">
+                                        <div className="room-name">
+                                          {theater.room_name}
+                                        </div>
+                                      </div>
+                                    </button>
+                                  </Link>
                                 </div>
                               </div>
-                            </button>
-                           </Link>
-                        </div>
-                      </div>
+                            </div>
+                        );
+                      })}
                     </div>
-                  );
-                })}
-              </div>
-            </div>
-          </TabPanel>
-        ))}
-    </>
+                  </div>
+                </TabPanel>
+            ))}
+      </>
   );
 }

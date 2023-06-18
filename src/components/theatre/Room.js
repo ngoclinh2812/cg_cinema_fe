@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getRoom, selectRoom, selectSuccess} from "../../features/room/roomSlice";
 import {useParams} from "react-router-dom";
 import axios from "axios";
-import 'bootstrap/dist/css/bootstrap.css';
+// import 'bootstrap/dist/css/bootstrap.css';
 import error from "../Error";
 
 export const Room = () => {
@@ -33,48 +33,49 @@ export const Room = () => {
     }
   };
 
+  console.log(seats)
+
 
 
   return (
-    <>
-      <div className="wrapper">
-        <div className="container">
-          <div>
-            <h1>Name Movie: </h1>
+      <>
+        <div className="wrapper">
+          <div className="container">
+            <div>
+              <h1>Name Movie: </h1>
+            </div>
+            <ul className="showcase">
+              <li>
+                <div className="seat"></div>
+                <small>Available</small>
+              </li>
+              <li>
+                <div className="seat selected"></div>
+                <small>Selected</small>
+              </li>
+              <li>
+                <div className="seat sold"></div>
+                <small>Sold</small>
+              </li>
+            </ul>
+            <div className="screen"></div>
+            <div className="row row-cols-xxl-6">
+              {seats.map((seat, index) => (
+                  <div
+                      className={`col seat ${selectedSeats.includes(index) ? 'selected' : ''} ${seat.sold ? 'sold' : ''}`}
+                      key={index}
+                      onClick={() => handleSeatClick(index)}
+                  >
+                    {seat.seat_name}
+                  </div>
+              ))}
+            </div>
+            <p className="text">
+              You have selected <span id="count">0</span> seat for a price of RS.
+              <span id="total">0</span>
+            </p>
           </div>
-          <ul className="showcase">
-            <li>
-              <div className="seat"></div>
-              <small>Available</small>
-            </li>
-            <li>
-              <div className="seat selected"></div>
-              <small>Selected</small>
-            </li>
-            <li>
-              <div className="seat sold"></div>
-              <small>Sold</small>
-            </li>
-          </ul>
-          <div className="screen"></div>
-          <div className="row row-cols-xxl-6">
-            {seats.map((seat, index) => (
-                <div
-                    className={`col seat ${selectedSeats.includes(index) ? 'selected' : ''} ${seat.sold ? 'sold' : ''}`}
-                    key={index}
-                    onClick={() => handleSeatClick(index)}
-                >
-                  {seat.seat_name}
-                </div>
-            ))}
-          </div>
-
-          <p className="text">
-            You have selected <span id="count">0</span> seat for a price of RS.
-            <span id="total">0</span>
-          </p>
         </div>
-      </div>
-    </>
+      </>
   );
 };
