@@ -26,9 +26,12 @@ export const ComingSoon = () => {
 
     return (
         <>
-            <div className="text-center" style={{ backgroundColor: "dimgray" }}>
-                <h1 className="font-semibold text-4xl mb-6">ComingSoon Movie</h1>
+            <div className="text-center" style={{ backgroundColor: 'rgb(229, 231, 235)' }}>
+                <h1 className="font-family text-5xl mb-8">ComingSoon Movie</h1>
                 <Swiper
+                    spaceBetween={40}
+                    slidesPerView={3}
+                    effect="fade"
                     onSlideChange={() => console.log("slide change")}
                     onSwiper={(swiper) => console.log(swiper)}
                     className="my-6 mx-auto"
@@ -50,7 +53,7 @@ export const ComingSoon = () => {
                     ))}
                 </Swiper>
             </div>
-            
+
         </>
     );
 };

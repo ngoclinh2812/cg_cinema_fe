@@ -26,11 +26,11 @@ export const OnGoingSlider = () => {
 
     return (
         <>
-            <div className="font-semibold text-4xl mx-auto">Ongoing Movie</div>
-            <div className="relative">
+            <div className="text-center" style={{ backgroundColor: "rgb(229, 231, 235)" }}>
+                <h1 className="font-family text-5xl mb-8">OnGoing Movie</h1>
                 <Swiper
-                    spaceBetween={80}
-                    slidesPerView={4}
+                    spaceBetween={40}
+                    slidesPerView={3}
                     onSlideChange={() => console.log("slide change")}
                     onSwiper={(swiper) => console.log(swiper)}
                     className="my-6 mx-auto"
