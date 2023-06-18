@@ -6,10 +6,10 @@ import Banner from '../../asset/images/cinema-banner.jpg';
 const Advertisement = () => {
     return (
         <>
-            <div className="w-full bg-gray-200 flex" style={{marginBottom: '30px'}}>
+            <div className="w-full bg-gray-200 flex" style={{backgroundColor: 'yellowgreen', marginBottom: '30px'}}>
                 <div className="w-1/2 p-8">
-                    <h2 className="text-4xl font-bold text-center mb-6">Khuyến mãi</h2>
-                    <p className="text-center mb-6">
+                    <h2 className="text-4xl font-bold text-center mb-6" style={{color: 'yellow', fontFamily: 'Arial'}}>Khuyến mãi</h2>
+                    <p className="text-center mb-6" style={{color: 'blueviolet', fontStyle: 'italic'}}>
                         Đăng ký để nhận nhiều ưu đãi vé xem phim. <br/>
                         Miễn phí combo bắp và nước đang chờ được bạn săn đón.
                     </p>
@@ -21,6 +21,8 @@ const Advertisement = () => {
                     <img src={Banner} alt="Banner" className="max-w-full h-auto rounded-lg" style={{width: '500px'}}/>
                 </div>
             </div>
+
+
         </>
     );
 };

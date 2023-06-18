@@ -26,8 +26,8 @@ export const ComingSoon = () => {
 
     return (
         <>
-            <div className="text-center" style={{ backgroundColor: 'rgb(229, 231, 235)' }}>
-                <h1 className="font-family text-5xl mb-8">ComingSoon Movie</h1>
+            <div className="text-center" style={{ backgroundColor: 'rgb(0, 249, 249)' }}>
+                <h1 className="font-family text-6xl py-1">ComingSoon Movie</h1>
                 <Swiper
                     spaceBetween={40}
                     slidesPerView={3}

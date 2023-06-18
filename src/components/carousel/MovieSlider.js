@@ -43,8 +43,8 @@ export const MovieSlider = () => {
 
     return (
         <>
-            <div className="relative" style={{ backgroundColor: "rgb(229, 231, 235)" }}>
-                <h2 className="text-4xl font-family text-center mb-6">Search movies</h2>
+            <div className="relative" style={{ backgroundColor: "rgb(184, 101, 95)" }}>
+                <h2 className="text-4xl font-family text-center text-6xl py-1">Search movies</h2>
 
                 <div className="flex justify-center mt-4">
                     <input
@@ -63,7 +63,7 @@ export const MovieSlider = () => {
                         Search
                     </Button>
                 </div>
-                <div className="text-center" style={{ backgroundColor: "rgb(229, 231, 235)" }}>
+                <div className="text-center" style={{ backgroundColor: "rgb(184, 101, 95)" }}>
                 <Swiper
                     spaceBetween={40}
                     slidesPerView={3}

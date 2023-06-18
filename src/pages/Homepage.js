@@ -11,9 +11,10 @@ const Homepage = () => {
         <>
             <CarouselHomepage />
             <MovieSlider />
+            <Advertisement />
             <OnGoingSlider/>
             <ComingSoon/>
-            <Advertisement />
+
         </>
     );
 };

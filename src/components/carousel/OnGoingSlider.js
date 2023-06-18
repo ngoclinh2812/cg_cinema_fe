@@ -26,8 +26,8 @@ export const OnGoingSlider = () => {
 
     return (
         <>
-            <div className="text-center" style={{ backgroundColor: "rgb(229, 231, 235)" }}>
-                <h1 className="font-family text-5xl mb-8">OnGoing Movie</h1>
+            <div className="text-center" style={{ backgroundColor: "rgb(250, 250, 154)" }}>
+                <h1 className="font-family text-6xl py-1">OnGoing Movie</h1>
                 <Swiper
                     spaceBetween={40}
                     slidesPerView={3}
