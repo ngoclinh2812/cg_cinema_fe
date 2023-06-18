@@ -11,6 +11,8 @@ import "../../asset/styles/theater.css";
 import axios from "axios";
 import AgeRestriction from "./AgeRestriction";
 import { Link } from "react-router-dom";
+import {setScheduleMovie} from "../../features/ticket/ticketSlice";
+
 
 export default function TheaterSchedule(props) {
   const [theaters, setTheaters] = useState([]);
@@ -19,6 +21,7 @@ export default function TheaterSchedule(props) {
   const success = useSelector(selectSuccess);
   const [theaterDt, setTheaterDt] = useState([]);
   const theaterDetail = useSelector(selectTheater);
+
 
   const { theaterId } = props;
 
@@ -36,6 +39,7 @@ export default function TheaterSchedule(props) {
       getTheaterDetail(theaterId);
     }
   }, [success, theaterList, theaterId, theaterDetail]);
+
 
   const getTheaterDetail = async (theaterId) => {
     let result = null;
@@ -74,8 +78,19 @@ export default function TheaterSchedule(props) {
                       )}
                       <div className="show-room">
                         <div className="show-room-info">
-                           <Link to={`/theatre/room/${theater.room_id}`} >
-                            <button>
+                          <Link
+                              to={`/theatre/room/${theater.room_id}`}
+                              onClick={() =>
+                                  dispatch(
+                                      setScheduleMovie({
+                                        room: { id: theater.room_id },
+                                        movie: { id: theater.movie_id },
+                                        schedule: { id: theater.schedule_id },
+                                      })
+                                  )
+                              }
+                          >
+                          <button>
                               <div className="show-time">
                                 {theater.show_time}
                               </div>
@@ -85,8 +100,8 @@ export default function TheaterSchedule(props) {
                                   {theater.room_name}
                                 </div>
                               </div>
-                            </button>
-                           </Link>
+                          </button>
+                          </Link>
                         </div>
                       </div>
                     </div>
