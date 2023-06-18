@@ -94,7 +94,7 @@ const CarouselHomepage = () => {
                         <div style={getOverlayStyle()} />
                         <div className="image-container">
                             <img
-                                src={movie.img}
+                                src={movie.imageUrl}
                                 alt={movie.name}
                                 className="mx-auto w-full object-cover"
                             />
