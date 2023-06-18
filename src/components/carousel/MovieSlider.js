@@ -38,39 +38,12 @@ export const MovieSlider = () => {
         );
         setSearchResults(results);
     };
-    const filterMoviesByStatus = async (status) => {
-        try {
-            const response = await (`/movies?status=${status}`);
-            const movies = response.data;
-            setSearchResults(movies);
-        } catch (error) {
-            console.error(error);
-        }
-    };
+
 
 
     return (
         <>
-            {/*<div>*/}
-            {/*    <div className="flex items-center justify-center space-x-4">*/}
-            {/*        <button*/}
-            {/*            type="button"*/}
-            {/*            className="px-4 py-2 ml-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"*/}
-            {/*            onClick={() => filterMoviesByStatus("Now Showing")}*/}
-            {/*        >*/}
-            {/*            Now Showing*/}
-            {/*        </button>*/}
-            {/*        <button*/}
-            {/*            type="button"*/}
-            {/*            className="px-4 py-2 ml-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"*/}
-            {/*            onClick={() => filterMoviesByStatus("Coming Soon")}*/}
-            {/*        >*/}
-            {/*            Coming Soon*/}
-            {/*        </button>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
-            {/*<div className="font-semibold text-4xl mx-auto">Featured Movie</div>*/}
-            <div className="relative">
+            <div className="relative" style={{ backgroundColor: "teal" }}>
                 <h2 className="text-4xl font-bold text-center mb-6">Search movies</h2>
 
                 <div className="flex justify-center mt-4">
@@ -90,6 +63,7 @@ export const MovieSlider = () => {
                         Search
                     </Button>
                 </div>
+                <div className="text-center" style={{ backgroundColor: "teal" }}>
                 <Swiper
                     spaceBetween={80}
                     slidesPerView={4}
@@ -113,6 +87,7 @@ export const MovieSlider = () => {
                         )
                     )}
                 </Swiper>
+                </div>
             </div>
         </>
     );

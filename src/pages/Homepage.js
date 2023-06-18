@@ -3,6 +3,7 @@ import CarouselHomepage from "../components/carousel/CarouselHomepage";
 import { MovieSlider } from "../components/carousel/MovieSlider";
 import Advertisement from "../components/advertisement/Advertisement";
 import {OnGoingSlider} from "../components/carousel/OnGoingSlider";
+import {ComingSoon} from "../components/carousel/ComingSoon";
 
 
 const Homepage = () => {
@@ -11,6 +12,7 @@ const Homepage = () => {
             <CarouselHomepage />
             <MovieSlider />
             <OnGoingSlider/>
+            <ComingSoon/>
             <Advertisement />
         </>
     );

@@ -27,25 +27,25 @@ const CarouselHomepage = () => {
                 className="mySwiper top-0"
             >
 
-                <SwiperSlide style={{ height: '600px' }}>
+                <SwiperSlide>
                     <img
                         src={banner1}
                         alt=""
                         className="mx-auto w-full  object-cover"
                     />
                 </SwiperSlide>
-                <SwiperSlide style={{ height: '600px' }}>
+                <SwiperSlide>
                     <img
                         src={banner2}
                         alt=""
-                        className="mx-auto w-full  object-cover"
+                        className="mx-auto w-full h-fit  object-cover"
                     />
                 </SwiperSlide>
-                <SwiperSlide style={{ height: '600px' }}>
+                <SwiperSlide>
                     <img
                         src={banner3}
                         alt=""
-                        className="mx-auto w-full object-cover"
+                        className="mx-auto w-full h-fit  object-cover"
                     />
                 </SwiperSlide>
 

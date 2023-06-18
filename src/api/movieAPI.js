@@ -24,10 +24,19 @@ export const movie = async (movieId) => {
     }
 };
 
-export const fetchOngoingMovie = async () => {
+export const onGoingMovies = async () => {
     let result = null;
     try {
         result = await axios.get(`${Movie_API}/movies/ongoing`);
+    } catch (e) {
+        console.log("Find movie API error: " + e);
+    }
+    return result;
+};
+export const comingSoonMovies = async () => {
+    let result = null;
+    try {
+        result = await axios.get(`${Movie_API}/movies/coming-soon`);
     } catch (e) {
         console.log("Find movie API error: " + e);
     }

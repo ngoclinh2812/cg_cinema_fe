@@ -5,17 +5,17 @@ import "swiper/css/navigation";
 import MovieCard from "../card/MovieCard";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { fetchOngoingMovies, setSuccess } from "../../features/movie/movieSlice";
+import {fetchComingSoonMovies, setSuccess} from "../../features/movie/movieSlice";
 
-export const OnGoingSlider = () => {
-    const ongoingMovies = useSelector((state) => state.movie.ongoingMovies);
+export const ComingSoon = () => {
+    const comingSoon = useSelector((state) => state.movie.comingSoonMovies);
     const success = useSelector((state) => state.movie.success);
     const dispatch = useDispatch();
 
     useEffect(() => {
         const getMovieList = async () => {
             if (!success) {
-                dispatch(fetchOngoingMovies());
+                dispatch(fetchComingSoonMovies());
             } else {
                 dispatch(setSuccess(true));
             }
@@ -26,18 +26,16 @@ export const OnGoingSlider = () => {
 
     return (
         <>
-            <div className="font-semibold text-4xl mx-auto">Ongoing Movie</div>
-            <div className="relative">
+            <div className="text-center" style={{ backgroundColor: "dimgray" }}>
+                <h1 className="font-semibold text-4xl mb-6">ComingSoon Movie</h1>
                 <Swiper
-                    spaceBetween={80}
-                    slidesPerView={4}
                     onSlideChange={() => console.log("slide change")}
                     onSwiper={(swiper) => console.log(swiper)}
                     className="my-6 mx-auto"
                 >
-                    {ongoingMovies.map((movie) => (
+                    {comingSoon.map((movie) => (
                         <SwiperSlide key={movie.id}>
-                            <Link to={`/movies/${movie.id}`}>
+                            <Link to={`/movies/${movie.id}`} className="block">
                                 <MovieCard
                                     title={
                                         movie.name.length > 20
@@ -52,6 +50,7 @@ export const OnGoingSlider = () => {
                     ))}
                 </Swiper>
             </div>
+            
         </>
     );
 };
