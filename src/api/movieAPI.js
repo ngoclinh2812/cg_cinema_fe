@@ -19,6 +19,7 @@ export const movie = async (movieId) => {
         return response.data;
     } catch (error) {
         console.error(error);
+        // Handle erro
         return response;
     }
 };
@@ -41,6 +42,7 @@ export const comingSoonMovies = async () => {
     }
     return result;
 };
+
 
 
 // import axios from "axios";

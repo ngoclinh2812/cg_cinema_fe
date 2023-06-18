@@ -13,6 +13,8 @@ import {Room} from "./components/theatre/Room";
 import Profile from "./pages/Profile";
 import {OrderConfirm} from "./pages/OrderConfirm";
 import {OrderCompleted} from "./pages/OrderCompleted";
+import {OnGoingSlider} from "./components/carousel/OnGoingSlider";
+import {ComingSoon} from "./components/carousel/ComingSoon";
 
 function App() {
     return (
@@ -20,6 +22,7 @@ function App() {
             <BrowserRouter>
                 <AppContent />
             </BrowserRouter>
+
         </div>
     );
 }
@@ -53,6 +56,9 @@ function AppContent() {
                     <Route path="/movies/:movieId" element={<MovieDetails />} />
                     <Route path="/order-confirm" element={<OrderConfirm />}/>
                     <Route path="/order-completed" element={<OrderCompleted />}/>
+                    <Route path="/ongoing" element={<OnGoingSlider />}/>
+                    <Route path="/comingSoon" element={<ComingSoon />}/>
+
                 </Routes>
                 <Footer />
             </div>

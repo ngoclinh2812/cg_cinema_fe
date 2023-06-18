@@ -17,7 +17,6 @@ export const Room = () => {
   const [scrollNav, setScrollNav] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const movieName = useSelector(selectMovieDetails);
   const movieDetails = useSelector(selectMovieDetails);
   const { id: movieId, name: movieName } = movieDetails;
 
