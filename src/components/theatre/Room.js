@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { setRoomId } from "../../features/ticket/ticketSlice";
+import { setRoomId, saveTicket } from "../../features/ticket/ticketSlice";
 import "../../asset/styles/room.css";
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -14,6 +14,7 @@ export const Room = () => {
   const MAX_SELECTED_SEATS = 1;
   const [scrollNav, setScrollNav] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -52,6 +53,18 @@ export const Room = () => {
     }
   };
 
+  const handleNextButtonClick = () => {
+    if (selectedSeats.length > 0) {
+      dispatch(saveTicket())
+          .then(() => {
+            navigate('/order-confirm');
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+    }
+  };
+
   return (
       <>
         <div className="wrapper">
@@ -87,14 +100,16 @@ export const Room = () => {
                   </div>
               ))}
             </div>
-
-            {/*<p className="text">*/}
-            {/*  You have selected <span id="count">{selectedSeats.length}</span>{" "}*/}
-            {/*  seat for a price of RS.*/}
-            {/*  <span id="total">{selectedSeats.length * seatPrice}</span>*/}
-            {/*</p>*/}
+            <br />
+            <button
+                className="btn btn-primary"
+                style={{ backgroundColor: 'teal' }}
+                onClick={handleNextButtonClick}
+                disabled={selectedSeats.length === 0}
+            >
+              Next
+            </button>
           </div>
         </div>
       </>
-  );
-};
+  );}

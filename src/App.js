@@ -11,6 +11,8 @@ import MovieDetails from "./pages/MovieDetails";
 import { useState } from "react";
 import {Room} from "./components/theatre/Room";
 import Profile from "./pages/Profile";
+import {OrderConfirm} from "./pages/OrderConfirm";
+import {OrderCompleted} from "./pages/OrderCompleted";
 
 function App() {
     return (
@@ -48,6 +50,8 @@ function AppContent() {
                 <Route path="/theatre" element={<TheatreList />} />
                 <Route path="/room" element={<Room />} />
                 <Route path="/movies/:movieId" element={<MovieDetails />} />
+                <Route path="/order-confirm" element={<OrderConfirm />}/>
+                <Route path="/order-completed" element={<OrderCompleted />}/>
             </Routes>
             <Footer />
         </div>
