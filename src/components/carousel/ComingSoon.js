@@ -26,23 +26,22 @@ export const ComingSoon = () => {
 
     return (
         <>
-            <div className="text-center" style={{ backgroundColor: 'rgb(0, 249, 249)' }}>
+            <div className="text-center"  style={{ }}>
                 <h1 className="font-family text-6xl py-1">ComingSoon Movie</h1>
                 <Swiper
                     spaceBetween={40}
-                    slidesPerView={3}
-                    effect="fade"
+                    slidesPerView={5}
                     onSlideChange={() => console.log("slide change")}
                     onSwiper={(swiper) => console.log(swiper)}
                     className="my-6 mx-auto"
                 >
                     {comingSoon.map((movie) => (
                         <SwiperSlide key={movie.id}>
-                            <Link to={`/movies/${movie.id}`} className="block">
+                            <Link to={`/movies/${movie.id}`} >
                                 <MovieCard
                                     title={
-                                        movie.name.length > 20
-                                            ? `${movie.name.substring(0, 15)}...`
+                                        movie.name.length > 10
+                                            ? `${movie.name.substring(10, 15)}...`
                                             : movie.name
                                     }
                                     imageUrl={movie.img}

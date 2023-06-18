@@ -1,5 +1,6 @@
 import React from 'react';
 import {Dropdown} from "flowbite-react";
+import {Link} from "react-router-dom";
 
 
 export const MovieNavList = () => {
@@ -11,11 +12,10 @@ export const MovieNavList = () => {
                     size="sm"
                 >
                     <Dropdown.Item>
-                        <a href="/">Now Showing</a>
+                        <Link to={`/ongoing`} className="block">Ongoing</Link>
                     </Dropdown.Item>
                     <Dropdown.Item>
-                        <a href="/">Coming Soon</a>
-
+                        <Link to={`/comingSoon`} className="block">ComingSoon</Link>
                     </Dropdown.Item>
                 </Dropdown>
 

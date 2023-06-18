@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchMovies, setSuccess } from "../../features/movie/movieSlice";
 import { Button } from '@material-tailwind/react';
+import {Dropdown} from "flowbite-react";
 
 
 export const MovieSlider = () => {
@@ -43,9 +44,9 @@ export const MovieSlider = () => {
 
     return (
         <>
-            <div className="relative" style={{ backgroundColor: "rgb(184, 101, 95)" }}>
+            <div className="relative" style={{ }}>
+                <br />
                 <h2 className="text-4xl font-family text-center text-6xl py-1">Search movies</h2>
-
                 <div className="flex justify-center mt-4">
                     <input
                         type="text"
@@ -63,7 +64,16 @@ export const MovieSlider = () => {
                         Search
                     </Button>
                 </div>
-                <div className="text-center" style={{ backgroundColor: "rgb(184, 101, 95)" }}>
+                <br />
+                <div className="text-center">
+                    <Button style={{backgroundColor: 'teal'}} variant="primary" className="mr-2">
+                        <Link to="/ongoing" className="button-link">Ongoing</Link>
+                    </Button>
+                    <Button style={{backgroundColor: 'teal'}} variant="primary">
+                        <Link to="/comingSoon" className="button-link">ComingSoon</Link>
+                    </Button>
+                </div>
+                <div className="text-center" style={{  }}>
                 <Swiper
                     spaceBetween={40}
                     slidesPerView={3}
