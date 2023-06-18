@@ -4,6 +4,7 @@ import {findAllTheaters, findTheater} from "../../api/theaterAPI";
 const initialState = {
     values: [],
     value: {},
+    rooms: [],
     loading: false,
     error: null,
     success: false,
@@ -22,7 +23,6 @@ export const getTheater = createAsyncThunk("theater/detail",
         const response = await findTheater(theaterId);
     return response.data;
 })
-
 export const theaterSlice = createSlice({
     name: "theater",
     initialState,
@@ -35,7 +35,10 @@ export const theaterSlice = createSlice({
         },
         setSuccess: (state, action) => {
             state.success = action.payload;
-        }
+        },
+        setRooms: (state, action) => {
+            state.rooms = action.payload;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -69,18 +72,19 @@ export const theaterSlice = createSlice({
                 state.success = true;
                 state.loading = false;
                 state.value = action.payload;
+                state.rooms = action.payload.rooms; // Update the rooms state
                 state.error = false;
-            })
-    }
+            });
+    },
 });
 
-
-export const { setLoading, setError, setSuccess } = theaterSlice.actions;
+export const { setLoading, setError, setSuccess, setRooms } = theaterSlice.actions;
 
 export const selectLoading = (state) => state.theater.loading;
 export const selectError = (state) => state.theater.error;
 export const selectSuccess = (state) => state.theater.success;
 export const selectTheaterList = (state) => state.theater?.values;
 export const selectTheater = (state) => state.theater?.value;
+export const selectRoomList = (state) => state.theater?.rooms;
 
 export default theaterSlice.reducer;

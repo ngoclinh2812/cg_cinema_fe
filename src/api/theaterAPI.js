@@ -6,8 +6,9 @@ export const findAllTheaters = async () => {
     let result = null;
     try {
         result = await axios.get(`${CG_THEATER_API}/theaters`);
+        console.log(result.data.dataList);
     } catch (e) {
-        console.log("Find all theaters API error: " + e)
+        console.log("Find all theaters API error: " + e);
     }
     return result;
 };
